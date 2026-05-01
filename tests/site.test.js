@@ -49,6 +49,7 @@ test("note library declares default note RSS URL and defensive parser", () => {
   assert.match(note, /https:\/\/note\.com\/scarecorow0222\/rss/);
   assert.match(note, /export async function getNoteArticles/);
   assert.match(note, /export function parseNoteRss/);
+  assert.match(note, /NOTE_RSS_REVALIDATE_SECONDS\s*=\s*600/);
   assert.match(note, /fast-xml-parser/);
 });
 

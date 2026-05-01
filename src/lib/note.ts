@@ -1,6 +1,7 @@
 import { XMLParser } from "fast-xml-parser";
 
 export const DEFAULT_NOTE_RSS_URL = "https://note.com/scarecorow0222/rss";
+export const NOTE_RSS_REVALIDATE_SECONDS = 600;
 
 export type NoteArticle = {
   title: string;
@@ -71,7 +72,7 @@ export async function getNoteArticles(limit?: number): Promise<NoteArticle[]> {
 
   try {
     const response = await fetch(rssUrl, {
-      next: { revalidate: 3600 }
+      next: { revalidate: NOTE_RSS_REVALIDATE_SECONDS }
     });
 
     if (!response.ok) {
