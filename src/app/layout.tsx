@@ -5,7 +5,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Scarecrow Web",
-  description: "静かな夜の作業部屋から、記録を残していく個人Webサイト。"
+  description: "静かな夜の作業部屋から、記録を残していく個人Webサイト。",
+  icons: {
+    icon: "/images/icon.png"
+  }
 };
 
 const navItems = [

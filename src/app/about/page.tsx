@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <section className="mx-auto grid max-w-5xl gap-10 px-5 py-14 md:grid-cols-[320px_1fr] md:items-start">
+    <section className="about-scene mx-auto grid max-w-5xl gap-10 px-5 py-14 md:grid-cols-[320px_1fr] md:items-start">
       <div className="relative flex flex-col items-center px-6 py-8 text-center">
         <div className="relative h-48 w-48 overflow-hidden rounded-full bg-[#2b241d] shadow-[0_0_70px_rgba(210,149,81,0.2)]">
           <Image
@@ -24,8 +24,21 @@ export default function AboutPage() {
           途中で迷ったことも含めて、静かに記録していきます。
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link className="rounded border border-[#a87742] px-4 py-2 text-sm text-[#f3e5d0]" href="https://note.com/scarecorow0222">
+          <Link
+            className="rounded border border-[#a87742] px-4 py-2 text-sm text-[#f3e5d0]"
+            href="https://note.com/scarecorow0222"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             note
+          </Link>
+          <Link
+            className="rounded border border-[#a87742] px-4 py-2 text-sm text-[#f3e5d0]"
+            href="https://x.com/Scarecrow0222"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            X
           </Link>
           <Link className="rounded border border-[#a87742] px-4 py-2 text-sm text-[#f3e5d0]" href="/">
             Home

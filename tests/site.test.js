@@ -39,6 +39,8 @@ test("layout exposes primary navigation and site identity", () => {
   assert.match(layout, /footer\.jpg/);
   assert.match(layout, /nav-link/);
   assert.match(layout, /scale-\[1\.28\]/);
+  assert.match(layout, /icons/);
+  assert.match(layout, /icon:\s*"\/images\/icon\.png"/);
   assert.doesNotMatch(layout, /alt="Scarecrow footer icon"/);
 });
 
@@ -110,6 +112,10 @@ test("route pages for logs, projects, and about are present", () => {
   assert.match(about, /icon\.png/);
   assert.match(about, /about-scene/);
   assert.match(about, /scale-\[1\.18\]/);
+  assert.match(about, /https:\/\/note\.com\/scarecorow0222/);
+  assert.match(about, /https:\/\/x\.com\/Scarecrow0222/);
+  assert.equal((about.match(/target="_blank"/g) || []).length, 2);
+  assert.equal((about.match(/rel="noopener noreferrer"/g) || []).length, 2);
   assert.equal((about.match(/border-y border-\[#6f5a42\]\/35/g) || []).length, 0);
 });
 
