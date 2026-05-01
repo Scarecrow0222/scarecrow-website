@@ -12,10 +12,9 @@ export default async function HomePage() {
         <div className="image-wash" />
         <div className="hero-copy">
           <p className="mb-4 text-sm font-semibold text-[#d49c5f]">AIと共に、静かに作り続ける。</p>
-          <h1 className="max-w-xl font-serif text-4xl leading-[1.45] text-[#f3e5d0] md:text-5xl">
-            深夜の作業部屋から、
-            <br />
-            記録を残していく。
+          <h1 className="hero-title max-w-xl font-serif text-4xl leading-[1.45] text-[#f3e5d0] md:text-5xl">
+            <span className="keep-phrase">深夜の作業部屋から、</span>
+            <span className="keep-phrase">記録を残していく。</span>
           </h1>
           <p className="mt-5 max-w-lg leading-8 text-[#d8c6ad]">
             個人開発の記録、考えたこと、作ったものを静かに積み上げるScarecrowのWebサイトです。
@@ -50,12 +49,34 @@ export default async function HomePage() {
           <div className="divide-y divide-[#6f5a42]/35 border-y border-[#6f5a42]/35">
             {articles.length > 0 ? (
               articles.map((article) => (
-                <article key={article.link} className="py-5 md:grid md:grid-cols-[120px_1fr] md:gap-6">
-                  <p className="text-xs text-[#b7a58d]">{article.publishedAt.slice(0, 10)}</p>
-                  <div>
-                    <h3 className="mt-2 font-serif text-xl text-[#f3e5d0] md:mt-0">{article.title}</h3>
-                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-[#d8c6ad]">{article.excerpt}</p>
-                  </div>
+                <article key={article.link}>
+                  <Link
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block py-5 transition hover:bg-[#2a2118]/45 md:grid md:grid-cols-[176px_minmax(0,1fr)] md:gap-6"
+                  >
+                    <div className="note-article-media">
+                      <p className="text-xs text-[#b7a58d]">{article.publishedAt.slice(0, 10)}</p>
+                      {article.image ? (
+                        <div className="relative mt-3 aspect-[16/9] overflow-hidden border border-[#6f5a42]/35">
+                          <Image
+                            src={article.image}
+                            alt=""
+                            fill
+                            className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                            sizes="(min-width: 768px) 160px, 100vw"
+                          />
+                        </div>
+                      ) : null}
+                    </div>
+                    <div>
+                      <h3 className="mt-2 font-serif text-xl text-[#f3e5d0] transition group-hover:text-[#d49c5f] md:mt-0">
+                        {article.title}
+                      </h3>
+                      <p className="mt-3 line-clamp-2 text-sm leading-6 text-[#d8c6ad]">{article.excerpt}</p>
+                    </div>
+                  </Link>
                 </article>
               ))
             ) : (
@@ -88,10 +109,12 @@ export default async function HomePage() {
         <div className="philosophy-scene">
           <div className="philosophy-copy">
             <h2 className="font-serif text-3xl text-[#f3e5d0]">Philosophy</h2>
-            <p className="mt-4 leading-8 text-[#d8c6ad]">
+            <p className="philosophy-text mt-4 leading-8 text-[#d8c6ad]">
               AIは道具でもあり、対話相手でもある。
               <br />
-              効率だけを追わず、丁寧に考えることを大切にしたい。
+              <span className="keep-phrase">効率だけを追わず、</span>
+              <span className="keep-phrase">丁寧に考えることを</span>
+              <span className="keep-phrase">大切にしたい。</span>
               <br />
               小さくても、自分の世界を作り続ける。
             </p>

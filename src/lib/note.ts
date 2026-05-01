@@ -16,10 +16,12 @@ type RssItem = {
   link?: string;
   pubDate?: string;
   description?: string;
-  "media:thumbnail"?: { "@_url"?: string };
-  "media:content"?: { "@_url"?: string };
+  "media:thumbnail"?: MediaValue;
+  "media:content"?: MediaValue;
   enclosure?: { "@_url"?: string };
 };
+
+type MediaValue = string | { "@_url"?: string; "#text"?: string };
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -44,10 +46,18 @@ function stripHtml(value: string): string {
     .trim();
 }
 
+function resolveImageValue(value: MediaValue | undefined): string | undefined {
+  if (typeof value === "string") {
+    return value.trim() || undefined;
+  }
+
+  return value?.["@_url"]?.trim() || value?.["#text"]?.trim();
+}
+
 function getImage(item: RssItem): string | undefined {
   return (
-    item["media:thumbnail"]?.["@_url"] ||
-    item["media:content"]?.["@_url"] ||
+    resolveImageValue(item["media:thumbnail"]) ||
+    resolveImageValue(item["media:content"]) ||
     item.enclosure?.["@_url"]
   );
 }

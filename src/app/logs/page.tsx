@@ -30,12 +30,34 @@ export default async function LogsPage() {
       <div className="mt-8 divide-y divide-[#6f5a42]/35 border-y border-[#6f5a42]/35">
         {articles.length > 0 ? (
           articles.map((article) => (
-            <article key={article.link} className="py-6 md:grid md:grid-cols-[128px_1fr] md:gap-6">
-              <p className="text-xs text-[#b7a58d]">{article.publishedAt.slice(0, 10)}</p>
-              <h2 className="mt-2 font-serif text-2xl text-[#f3e5d0]">
-                <Link href={article.link}>{article.title}</Link>
-              </h2>
-              <p className="mt-3 leading-7 text-[#d8c6ad] md:col-start-2">{article.excerpt}</p>
+            <article key={article.link}>
+              <Link
+                href={article.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block py-6 transition hover:bg-[#2a2118]/45 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6"
+              >
+                <div className="note-article-media">
+                  <p className="text-xs text-[#b7a58d]">{article.publishedAt.slice(0, 10)}</p>
+                  {article.image ? (
+                    <div className="relative mt-3 aspect-[16/9] overflow-hidden border border-[#6f5a42]/35">
+                      <Image
+                        src={article.image}
+                        alt=""
+                        fill
+                        className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                        sizes="(min-width: 768px) 220px, 100vw"
+                      />
+                    </div>
+                  ) : null}
+                </div>
+                <div>
+                  <h2 className="mt-2 font-serif text-2xl text-[#f3e5d0] transition group-hover:text-[#d49c5f] md:mt-0">
+                    {article.title}
+                  </h2>
+                  <p className="mt-3 leading-7 text-[#d8c6ad]">{article.excerpt}</p>
+                </div>
+              </Link>
             </article>
           ))
         ) : (

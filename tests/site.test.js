@@ -18,6 +18,7 @@ test("project scaffold contains Next.js, Tailwind, and test scripts", () => {
   assert.equal(exists("next.config.mjs"), true);
   assert.equal(exists("tailwind.config.ts"), true);
   assert.equal(exists("src/app/layout.tsx"), true);
+  assert.equal(exists("src/app/MobileNav.tsx"), true);
   assert.equal(exists("src/app/globals.css"), true);
 
   const pkg = JSON.parse(read("package.json"));
@@ -28,8 +29,15 @@ test("project scaffold contains Next.js, Tailwind, and test scripts", () => {
   assert.ok(pkg.devDependencies.tailwindcss);
 });
 
+test("next image config allows note image hosts", () => {
+  const config = read("next.config.mjs");
+  assert.match(config, /assets\.st-note\.com/);
+  assert.match(config, /d2l930y2yx77uc\.cloudfront\.net/);
+});
+
 test("layout exposes primary navigation and site identity", () => {
   const layout = read("src/app/layout.tsx");
+  const mobileNav = read("src/app/MobileNav.tsx");
   assert.match(layout, /Scarecrow/);
   assert.match(layout, /Home/);
   assert.match(layout, /Logs/);
@@ -38,6 +46,14 @@ test("layout exposes primary navigation and site identity", () => {
   assert.match(layout, /icon\.png/);
   assert.match(layout, /footer\.jpg/);
   assert.match(layout, /nav-link/);
+  assert.match(layout, /MobileNav/);
+  assert.match(mobileNav, /"use client"/);
+  assert.match(mobileNav, /useState/);
+  assert.match(mobileNav, /pointerdown/);
+  assert.match(mobileNav, /Escape/);
+  assert.match(mobileNav, /mobile-nav-backdrop/);
+  assert.match(mobileNav, /mobile-nav-panel/);
+  assert.match(mobileNav, /aria-expanded=\{isOpen\}/);
   assert.match(layout, /scale-\[1\.28\]/);
   assert.match(layout, /icons/);
   assert.match(layout, /icon:\s*"\/images\/icon\.png"/);
@@ -62,10 +78,25 @@ test("note parser strips html descriptions and normalizes item fields", () => {
   assert.match(note, /excerpt/);
 });
 
+test("note parser supports note media thumbnail text nodes", () => {
+  const note = read("src/lib/note.ts");
+  assert.match(note, /type MediaValue/);
+  assert.match(note, /resolveImageValue/);
+  assert.match(note, /media:thumbnail/);
+  assert.match(note, /typeof value === "string"/);
+});
+
 test("home page renders hero, logs, projects, and philosophy sections", () => {
   const page = read("src/app/page.tsx");
   assert.match(page, /深夜の作業部屋から/);
+  assert.match(page, /keep-phrase/);
+  assert.match(page, /hero-title/);
   assert.match(page, /Latest Logs/);
+  assert.match(page, /target="_blank"/);
+  assert.match(page, /rel="noopener noreferrer"/);
+  assert.match(page, /article\.image/);
+  assert.match(page, /note-article-media/);
+  assert.match(page, /md:grid-cols-\[176px_minmax\(0,1fr\)\]/);
   assert.match(page, /Projects/);
   assert.match(page, /Philosophy/);
   assert.match(page, /getNoteArticles\(3\)/);
@@ -74,17 +105,18 @@ test("home page renders hero, logs, projects, and philosophy sections", () => {
   assert.match(page, /hero-scene/);
   assert.match(page, /hero-copy/);
   assert.match(page, /hero-visual/);
-  assert.match(page, new RegExp("深夜の作業部屋から、\\s*<br />\\s*記録を残していく。"));
+  assert.doesNotMatch(page, new RegExp("深夜の作業部屋から、\\s*<br />\\s*記録を残していく。"));
   assert.match(page, /projects-grid/);
   assert.match(page, /philosophy-scene/);
   assert.match(page, /philosophy-copy/);
   assert.match(page, /philosophy-visual/);
   assert.match(
     page,
-    new RegExp(
-      "AIは道具でもあり、対話相手でもある。\\s*<br />\\s*効率だけを追わず、丁寧に考えることを大切にしたい。\\s*<br />\\s*小さくても、自分の世界を作り続ける。"
-    )
+    /効率だけを追わず、/
   );
+  assert.match(page, /丁寧に考えることを/);
+  assert.match(page, /大切にしたい。/);
+  assert.match(page, /philosophy-text/);
   assert.doesNotMatch(page, /hero-socials/);
   assert.doesNotMatch(page, /https:\/\/github\.com/);
   assert.doesNotMatch(page, /https:\/\/x\.com/);
@@ -96,6 +128,11 @@ test("route pages for logs, projects, and about are present", () => {
   const about = read("src/app/about/page.tsx");
 
   assert.match(logs, /noteの記事/);
+  assert.match(logs, /target="_blank"/);
+  assert.match(logs, /rel="noopener noreferrer"/);
+  assert.match(logs, /article\.image/);
+  assert.match(logs, /note-article-media/);
+  assert.match(logs, /md:grid-cols-\[220px_minmax\(0,1fr\)\]/);
   assert.match(logs, /まだ記事を取得できませんでした/);
   assert.match(logs, /lanthanum\.jpg/);
   assert.match(logs, /intro-scene/);
@@ -123,6 +160,7 @@ test("route pages for logs, projects, and about are present", () => {
 test("global styles blend text and images into a unified scene", () => {
   const styles = read("src/app/globals.css");
   assert.match(styles, /\.hero-scene/);
+  assert.match(styles, /\.hero-title/);
   assert.match(styles, /\.hero-copy/);
   assert.match(styles, /\.hero-visual/);
   assert.match(styles, /\.image-wash/);
@@ -131,8 +169,22 @@ test("global styles blend text and images into a unified scene", () => {
   assert.match(styles, /\.intro-visual/);
   assert.match(styles, /\.about-scene/);
   assert.match(styles, /\.philosophy-scene/);
+  assert.match(styles, /\.philosophy-text/);
+  assert.match(styles, /\.keep-phrase/);
   assert.match(styles, /\.philosophy-visual/);
   assert.match(styles, /\.nav-link::after/);
+  assert.match(styles, /\.mobile-nav-toggle/);
+  assert.match(styles, /\.mobile-nav-menu/);
+  assert.match(styles, /\.mobile-nav-panel/);
+  assert.match(styles, /\.mobile-nav-backdrop/);
+  assert.match(styles, /translateX\(100%\)/);
+  assert.match(styles, /100dvh/);
+  assert.match(styles, /\.mobile-nav-menu\[data-open="true"\]/);
+  assert.match(styles, /transition:\s*opacity 180ms ease, visibility 180ms ease/);
+  assert.match(styles, /transition:\s*transform 220ms ease/);
+  assert.match(styles, /@media \(max-width: 767px\)/);
+  assert.match(styles, /font-size: clamp\(1\.7rem, 9\.5vw, 2\.65rem\)/);
+  assert.match(styles, /word-break: keep-all/);
   assert.match(styles, /\.section-band/);
   assert.match(styles, /min-height: clamp\(420px, 64vh, 620px\)/);
   assert.doesNotMatch(styles, /border-left: 1px solid rgba\(111, 90, 66, 0\.34\)/);

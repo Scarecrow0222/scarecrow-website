@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { MobileNav } from "./MobileNav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -41,7 +42,8 @@ export default function RootLayout({
               </span>
               <span className="font-serif text-xl">Scarecrow</span>
             </Link>
-            <div className="flex items-center gap-5 text-sm text-[#d8c6ad]">
+            <MobileNav items={navItems} />
+            <div className="desktop-nav flex items-center gap-5 text-sm text-[#d8c6ad]">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href} className="nav-link">
                   {item.label}
