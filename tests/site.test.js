@@ -43,6 +43,10 @@ test("layout exposes primary navigation and site identity", () => {
   assert.match(layout, /Logs/);
   assert.match(layout, /Projects/);
   assert.match(layout, /About/);
+  assert.match(layout, /Contact/);
+  assert.match(layout, /https:\/\/forms\.gle\/XDLLPyPV4hwgCNLK6/);
+  assert.match(layout, /target: "_blank"/);
+  assert.match(layout, /rel: "noopener noreferrer"/);
   assert.match(layout, /icon\.png/);
   assert.match(layout, /footer\.jpg/);
   assert.match(layout, /nav-link/);
@@ -152,8 +156,10 @@ test("route pages for logs, projects, and about are present", () => {
   assert.match(about, /scale-\[1\.18\]/);
   assert.match(about, /https:\/\/note\.com\/scarecorow0222/);
   assert.match(about, /https:\/\/x\.com\/Scarecrow0222/);
-  assert.equal((about.match(/target="_blank"/g) || []).length, 2);
-  assert.equal((about.match(/rel="noopener noreferrer"/g) || []).length, 2);
+  assert.match(about, /お問い合わせ/);
+  assert.match(about, /https:\/\/forms\.gle\/XDLLPyPV4hwgCNLK6/);
+  assert.equal((about.match(/target="_blank"/g) || []).length, 3);
+  assert.equal((about.match(/rel="noopener noreferrer"/g) || []).length, 3);
   assert.equal((about.match(/border-y border-\[#6f5a42\]\/35/g) || []).length, 0);
 });
 

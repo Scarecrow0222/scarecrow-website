@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 type NavItem = {
   href: string;
   label: string;
+  target?: string;
+  rel?: string;
 };
 
 type MobileNavProps = {
@@ -62,7 +64,14 @@ export function MobileNav({ items }: MobileNavProps) {
       <div id="mobile-nav-menu" className="mobile-nav-menu" data-open={isOpen}>
         <div className="mobile-nav-panel text-sm text-[#d8c6ad]">
           {items.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link" onClick={() => setIsOpen(false)}>
+            <Link
+              key={item.href}
+              href={item.href}
+              className="nav-link"
+              target={item.target}
+              rel={item.rel}
+              onClick={() => setIsOpen(false)}
+            >
               {item.label}
             </Link>
           ))}

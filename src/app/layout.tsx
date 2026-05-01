@@ -16,7 +16,13 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/logs", label: "Logs" },
   { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" }
+  { href: "/about", label: "About" },
+  {
+    href: "https://forms.gle/XDLLPyPV4hwgCNLK6",
+    label: "Contact",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }
 ];
 
 export default function RootLayout({
@@ -45,7 +51,7 @@ export default function RootLayout({
             <MobileNav items={navItems} />
             <div className="desktop-nav flex items-center gap-5 text-sm text-[#d8c6ad]">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href} className="nav-link">
+                <Link key={item.href} href={item.href} className="nav-link" target={item.target} rel={item.rel}>
                   {item.label}
                 </Link>
               ))}

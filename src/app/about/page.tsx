@@ -40,6 +40,14 @@ export default function AboutPage() {
           >
             X
           </Link>
+          <Link
+            className="rounded border border-[#a87742] px-4 py-2 text-sm text-[#f3e5d0]"
+            href="https://forms.gle/XDLLPyPV4hwgCNLK6"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            お問い合わせ
+          </Link>
           <Link className="rounded border border-[#a87742] px-4 py-2 text-sm text-[#f3e5d0]" href="/">
             Home
           </Link>
