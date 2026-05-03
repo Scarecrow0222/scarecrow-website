@@ -163,6 +163,75 @@ test("route pages for logs, projects, and about are present", () => {
   assert.equal((about.match(/border-y border-\[#6f5a42\]\/35/g) || []).length, 0);
 });
 
+test("dashboard page shows access analytics overview", () => {
+  assert.equal(exists("src/app/dashboard/page.tsx"), true);
+  assert.equal(exists("src/data/analytics.ts"), true);
+  assert.equal(exists("src/lib/analytics.ts"), true);
+
+  const dashboard = read("src/app/dashboard/page.tsx");
+  const analytics = read("src/data/analytics.ts");
+  const analyticsLib = read("src/lib/analytics.ts");
+
+  assert.match(dashboard, /アクセス分析/);
+  assert.match(dashboard, /総アクセス数/);
+  assert.match(dashboard, /直近7日/);
+  assert.match(dashboard, /人気ページ/);
+  assert.match(dashboard, /流入元/);
+  assert.match(dashboard, /dashboard-metrics/);
+  assert.match(dashboard, /dashboard-bars/);
+  // [MODIFY] 旧: dashboard が静的データを直接参照 → 新: Supabase 集計関数から取得
+  assert.match(dashboard, /getAnalyticsDashboardData/);
+  assert.match(analyticsLib, /analyticsSummary/);
+  assert.match(analyticsLib, /popularPages/);
+  assert.match(analyticsLib, /trafficSources/);
+
+  assert.match(analytics, /export const analyticsSummary/);
+  assert.match(analytics, /totalViews/);
+  assert.match(analytics, /weeklyViews/);
+  assert.match(analytics, /export const popularPages/);
+  assert.match(analytics, /export const trafficSources/);
+});
+
+test("dashboard is private and backed by Supabase analytics", () => {
+  assert.equal(exists("src/app/api/analytics/route.ts"), true);
+  assert.equal(exists("src/app/analytics-tracker.tsx"), true);
+  assert.equal(exists("src/lib/analytics.ts"), true);
+  assert.equal(exists("src/lib/supabase.ts"), true);
+  assert.equal(exists("supabase/migrations/0001_create_page_views.sql"), true);
+
+  const pkg = JSON.parse(read("package.json"));
+  assert.ok(pkg.dependencies["@supabase/supabase-js"]);
+
+  const layout = read("src/app/layout.tsx");
+  const dashboard = read("src/app/dashboard/page.tsx");
+  const api = read("src/app/api/analytics/route.ts");
+  const tracker = read("src/app/analytics-tracker.tsx");
+  const analytics = read("src/lib/analytics.ts");
+  const supabase = read("src/lib/supabase.ts");
+  const migration = read("supabase/migrations/0001_create_page_views.sql");
+
+  assert.doesNotMatch(layout, /Dashboard/);
+  assert.match(layout, /AnalyticsTracker/);
+  assert.match(dashboard, /ADMIN_DASHBOARD_TOKEN/);
+  assert.match(dashboard, /notFound\(\)/);
+  assert.match(dashboard, /getAnalyticsDashboardData/);
+  assert.match(api, /export async function POST/);
+  assert.match(api, /recordPageView/);
+  assert.match(tracker, /navigator\.sendBeacon/);
+  assert.match(tracker, /\/api\/analytics/);
+  assert.match(analytics, /recordPageView/);
+  assert.match(analytics, /getAnalyticsDashboardData/);
+  assert.match(analytics, /getAnalyticsTableName/);
+  assert.match(analytics, /page_views_local/);
+  assert.match(analytics, /NODE_ENV === "production"/);
+  assert.match(supabase, /createClient/);
+  assert.match(supabase, /SUPABASE_SERVICE_ROLE_KEY/);
+  assert.match(migration, /create table if not exists public\.page_views/);
+  assert.match(migration, /create table if not exists public\.page_views_local/);
+  assert.match(migration, /page_views_local_created_at_idx/);
+  assert.match(migration, /enable row level security/);
+});
+
 test("global styles blend text and images into a unified scene", () => {
   const styles = read("src/app/globals.css");
   assert.match(styles, /\.hero-scene/);
@@ -192,6 +261,8 @@ test("global styles blend text and images into a unified scene", () => {
   assert.match(styles, /font-size: clamp\(1\.7rem, 9\.5vw, 2\.65rem\)/);
   assert.match(styles, /word-break: keep-all/);
   assert.match(styles, /\.section-band/);
+  assert.match(styles, /\.dashboard-metrics/);
+  assert.match(styles, /\.dashboard-bars/);
   assert.match(styles, /min-height: clamp\(420px, 64vh, 620px\)/);
   assert.doesNotMatch(styles, /border-left: 1px solid rgba\(111, 90, 66, 0\.34\)/);
 });

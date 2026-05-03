@@ -9,6 +9,7 @@
     "test": "node --test tests/site.test.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.105.1",
     "@tailwindcss/postcss": "^4.1.13",
     "fast-xml-parser": "^5.2.5",
     "next": "^15.5.4",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { AnalyticsTracker } from "./analytics-tracker";
 import { MobileNav } from "./MobileNav";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <div className="grain" />
+        <AnalyticsTracker />
         <header className="sticky top-0 z-20 border-b border-[#6f5a42]/40 bg-[#1a1816]/88 backdrop-blur">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
             <Link href="/" className="flex items-center gap-3 text-[#f3e5d0]">
