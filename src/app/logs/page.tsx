@@ -7,7 +7,7 @@ export default async function LogsPage() {
 
   return (
     <section className="mx-auto max-w-5xl px-5 py-14">
-      <div className="intro-scene mb-10">
+      <div className="intro-scene mb-10" data-reveal>
         <div className="intro-copy">
           <p className="text-sm text-[#d49c5f]">noteの記事</p>
           <h1 className="mt-3 font-serif text-4xl text-[#f3e5d0]">Logs</h1>
@@ -30,7 +30,7 @@ export default async function LogsPage() {
       <div className="mt-8 divide-y divide-[#6f5a42]/35 border-y border-[#6f5a42]/35">
         {articles.length > 0 ? (
           articles.map((article) => (
-            <article key={article.link}>
+            <article key={article.link} data-reveal>
               <Link
                 href={article.link}
                 target="_blank"

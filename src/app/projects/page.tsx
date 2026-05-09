@@ -4,7 +4,7 @@ import { projects } from "@/data/projects";
 export default function ProjectsPage() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-14">
-      <div className="intro-scene mb-8">
+      <div className="intro-scene mb-8" data-reveal>
         <div className="intro-copy">
           <p className="text-sm text-[#d49c5f]">制作物</p>
           <h1 className="mt-3 font-serif text-4xl text-[#f3e5d0]">Projects</h1>
@@ -24,7 +24,7 @@ export default function ProjectsPage() {
       </div>
       <div className="projects-grid mt-8">
         {projects.map((project) => (
-          <article key={project.title} className="border border-[#6f5a42]/35 bg-[#1d1916]/90 p-6 transition hover:bg-[#282019]/90">
+          <article key={project.title} className="border border-[#6f5a42]/35 bg-[#1d1916]/90 p-6 transition hover:bg-[#282019]/90" data-reveal>
             <h2 className="font-serif text-2xl text-[#f3e5d0]">{project.title}</h2>
             <p className="mt-3 leading-7 text-[#d8c6ad]">{project.description}</p>
             <div className="mt-4 flex flex-wrap gap-2">

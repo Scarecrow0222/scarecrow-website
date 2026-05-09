@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="hero-scene mx-auto max-w-6xl overflow-hidden px-5">
+      <section className="hero-scene mx-auto max-w-6xl overflow-hidden px-5" data-reveal>
         <div className="image-wash" />
         <div className="hero-copy">
           <p className="mb-4 text-sm font-semibold text-[#d49c5f]">AIと共に、静かに作り続ける。</p>
@@ -20,10 +20,10 @@ export default async function HomePage() {
             個人開発の記録、考えたこと、作ったものを静かに積み上げるScarecrowのWebサイトです。
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link className="border border-[#a87742] bg-[#a87742] px-6 py-3 text-sm font-semibold text-[#1a1816] shadow-[0_0_28px_rgba(168,119,66,0.22)] transition hover:bg-[#c09257]" href="/logs">
+            <Link className="rounded-[0.85rem] border border-[#a87742] bg-[#a87742] px-6 py-3 text-sm font-semibold text-[#1a1816] shadow-[0_0_28px_rgba(168,119,66,0.22)] transition hover:bg-[#c09257]" href="/logs">
               最新のログを見る
             </Link>
-            <Link className="border border-[#a87742] bg-[#1a1816]/35 px-6 py-3 text-sm font-semibold text-[#f3e5d0] transition hover:bg-[#a87742]/18" href="/projects">
+            <Link className="rounded-[0.85rem] border border-[#a87742] bg-[#1a1816]/35 px-6 py-3 text-sm font-semibold text-[#f3e5d0] transition hover:bg-[#a87742]/18" href="/projects">
               プロジェクトを見る
             </Link>
           </div>
@@ -40,7 +40,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="section-band px-5 py-12">
+      <section className="section-band px-5 py-12" data-reveal>
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex items-end justify-between gap-4">
             <h2 className="font-serif text-3xl text-[#f3e5d0]">Latest Logs</h2>
@@ -49,7 +49,7 @@ export default async function HomePage() {
           <div className="divide-y divide-[#6f5a42]/35 border-y border-[#6f5a42]/35">
             {articles.length > 0 ? (
               articles.map((article) => (
-                <article key={article.link}>
+                <article key={article.link} data-reveal>
                   <Link
                     href={article.link}
                     target="_blank"
@@ -86,11 +86,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-12">
+      <section className="mx-auto max-w-6xl px-5 py-12" data-reveal>
         <h2 className="mb-6 font-serif text-3xl text-[#f3e5d0]">Projects</h2>
         <div className="projects-grid">
           {projects.map((project) => (
-            <article key={project.title} className="border border-[#6f5a42]/35 bg-[#1d1916]/90 p-5 transition hover:bg-[#282019]/90">
+            <article key={project.title} className="border border-[#6f5a42]/35 bg-[#1d1916]/90 p-5 transition hover:bg-[#282019]/90" data-reveal>
               <h3 className="font-serif text-xl text-[#f3e5d0]">{project.title}</h3>
               <p className="mt-3 text-sm leading-6 text-[#d8c6ad]">{project.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -105,7 +105,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pb-16">
+      <section className="mx-auto max-w-6xl px-5 pb-16" data-reveal>
         <div className="philosophy-scene">
           <div className="philosophy-copy">
             <h2 className="font-serif text-3xl text-[#f3e5d0]">Philosophy</h2>

@@ -51,6 +51,8 @@ test("layout exposes primary navigation and site identity", () => {
   assert.match(layout, /footer\.jpg/);
   assert.match(layout, /nav-link/);
   assert.match(layout, /MobileNav/);
+  assert.match(layout, /ScrollReveal/);
+  assert.match(layout, /PageLoader/);
   assert.match(mobileNav, /"use client"/);
   assert.match(mobileNav, /useState/);
   assert.match(mobileNav, /pointerdown/);
@@ -62,6 +64,43 @@ test("layout exposes primary navigation and site identity", () => {
   assert.match(layout, /icons/);
   assert.match(layout, /icon:\s*"\/images\/icon\.png"/);
   assert.doesNotMatch(layout, /alt="Scarecrow footer icon"/);
+});
+
+test("initial page access shows animated loading overlay before reveal", () => {
+  assert.equal(exists("src/app/PageLoader.tsx"), true);
+
+  const layout = read("src/app/layout.tsx");
+  const loader = read("src/app/PageLoader.tsx");
+  const styles = read("src/app/globals.css");
+
+  assert.match(layout, /<PageLoader \/>/);
+  assert.match(loader, /"use client"/);
+  assert.match(loader, /useEffect/);
+  assert.match(loader, /useState/);
+  assert.match(loader, /loader-content/);
+  assert.doesNotMatch(loader, /loader-scarecrow/);
+  assert.doesNotMatch(loader, /loading-scarecrow/);
+  assert.match(loader, /LOADING/);
+  assert.match(loader, /Scarecrow/);
+  assert.match(loader, /aria-live="polite"/);
+  assert.match(loader, /setInterval/);
+  assert.match(loader, /document\.readyState/);
+  assert.match(loader, /document\.fonts/);
+  assert.match(loader, /progress/);
+  assert.match(styles, /\.site-loader/);
+  assert.match(styles, /\.site-loader\.is-hidden/);
+  assert.match(styles, /backdrop-filter:\s*blur/);
+  assert.match(styles, /\.loader-content/);
+  assert.match(styles, /width:\s*min\(30rem, 86vw\)/);
+  assert.match(styles, /\.loader-shell[\s\S]*background:\s*transparent/);
+  assert.match(styles, /\.loader-shell[\s\S]*box-shadow:\s*none/);
+  assert.doesNotMatch(styles, /\.loader-window/);
+  assert.doesNotMatch(styles, /\.loader-scarecrow/);
+  assert.doesNotMatch(styles, /loading-scarecrow/);
+  assert.match(styles, /\.loader-track/);
+  assert.match(styles, /\.loader-progress/);
+  assert.match(styles, /@keyframes loading-dots/);
+  assert.match(styles, /z-index:\s*60/);
 });
 
 test("note library declares default note RSS URL and defensive parser", () => {
@@ -109,6 +148,8 @@ test("home page renders hero, logs, projects, and philosophy sections", () => {
   assert.match(page, /hero-scene/);
   assert.match(page, /hero-copy/);
   assert.match(page, /hero-visual/);
+  assert.match(page, /rounded-\[0\.85rem\][\s\S]*最新のログを見る/);
+  assert.match(page, /rounded-\[0\.85rem\][\s\S]*プロジェクトを見る/);
   assert.doesNotMatch(page, new RegExp("深夜の作業部屋から、\\s*<br />\\s*記録を残していく。"));
   assert.match(page, /projects-grid/);
   assert.match(page, /philosophy-scene/);
@@ -153,13 +194,38 @@ test("route pages for logs, projects, and about are present", () => {
   assert.match(about, /Scarecrowについて/);
   assert.match(about, /icon\.png/);
   assert.match(about, /about-scene/);
+  assert.match(about, /profile-links/);
   assert.match(about, /scale-\[1\.18\]/);
   assert.match(about, /https:\/\/note\.com\/scarecorow0222/);
   assert.match(about, /https:\/\/x\.com\/Scarecrow0222/);
   assert.match(about, /お問い合わせ/);
   assert.match(about, /https:\/\/forms\.gle\/XDLLPyPV4hwgCNLK6/);
-  assert.equal((about.match(/target="_blank"/g) || []).length, 3);
-  assert.equal((about.match(/rel="noopener noreferrer"/g) || []).length, 3);
+  assert.match(about, /profile-icon-link/);
+  assert.match(about, /aria-label=\{link\.label\}/);
+  assert.match(about, /noteを開く/);
+  assert.match(about, /Xを開く/);
+  assert.match(about, /お問い合わせフォームを開く/);
+  assert.match(about, /ホームへ戻る/);
+  assert.match(about, /ProfileLinkIcon/);
+  assert.match(about, /主に使える技術・サービス/);
+  assert.match(about, /TypeScript/);
+  assert.match(about, /Next\.js \/ React/);
+  assert.match(about, /NestJS/);
+  assert.match(about, /Spring Boot \/ Kotlin/);
+  assert.match(about, /about-tech-icons\.png/);
+  assert.match(about, /デプロイ・DB・インフラ/);
+  assert.match(about, /AWS/);
+  assert.match(about, /クラウドインフラの設計・構築・運用/);
+  assert.doesNotMatch(about, /ECS、RDS、DynamoDB、EC2、CloudFront、S3、Lambda、API Gateway/);
+  assert.match(about, /Vercel/);
+  assert.match(about, /Supabase/);
+  assert.match(about, /Render/);
+  assert.match(about, /about-service-icons\.png/);
+  assert.match(about, /service-stack/);
+  assert.match(about, /skill-card/);
+  assert.match(about, /data-reveal/);
+  assert.equal((about.match(/target: "_blank"/g) || []).length, 3);
+  assert.equal((about.match(/rel: "noopener noreferrer"/g) || []).length, 3);
   assert.equal((about.match(/border-y border-\[#6f5a42\]\/35/g) || []).length, 0);
 });
 
@@ -234,6 +300,7 @@ test("dashboard is private and backed by Supabase analytics", () => {
 
 test("global styles blend text and images into a unified scene", () => {
   const styles = read("src/app/globals.css");
+  const scrollReveal = read("src/app/ScrollReveal.tsx");
   assert.match(styles, /\.hero-scene/);
   assert.match(styles, /\.hero-title/);
   assert.match(styles, /\.hero-copy/);
@@ -243,6 +310,17 @@ test("global styles blend text and images into a unified scene", () => {
   assert.match(styles, /\.intro-scene/);
   assert.match(styles, /\.intro-visual/);
   assert.match(styles, /\.about-scene/);
+  assert.match(styles, /\.skills-grid/);
+  assert.match(styles, /\.skill-card/);
+  assert.match(styles, /\.skill-icon/);
+  assert.match(styles, /\[data-reveal\]/);
+  assert.match(styles, /\.is-visible/);
+  assert.match(styles, /prefers-reduced-motion/);
+  assert.match(scrollReveal, /"use client"/);
+  assert.match(scrollReveal, /usePathname/);
+  assert.match(scrollReveal, /IntersectionObserver/);
+  assert.match(scrollReveal, /reveal-ready/);
+  assert.match(scrollReveal, /\[pathname\]/);
   assert.match(styles, /\.philosophy-scene/);
   assert.match(styles, /\.philosophy-text/);
   assert.match(styles, /\.keep-phrase/);
@@ -264,6 +342,17 @@ test("global styles blend text and images into a unified scene", () => {
   assert.match(styles, /\.dashboard-metrics/);
   assert.match(styles, /\.dashboard-bars/);
   assert.match(styles, /min-height: clamp\(420px, 64vh, 620px\)/);
+  assert.match(styles, /--radius-soft:\s*1\.1rem/);
+  assert.match(styles, /\.hero-visual[\s\S]*border-radius:\s*var\(--radius-soft\)/);
+  assert.match(styles, /\.intro-visual[\s\S]*border-radius:\s*var\(--radius-soft\)/);
+  assert.match(styles, /\.philosophy-visual[\s\S]*border-radius:\s*var\(--radius-soft\)/);
+  assert.match(styles, /\.mobile-nav-toggle[\s\S]*border-radius:\s*999px/);
+  assert.match(styles, /\.profile-icon-link[\s\S]*border:\s*0/);
+  assert.match(styles, /\.profile-icon-link[\s\S]*border-radius:\s*999px/);
+  assert.match(styles, /\.profile-icon-link::before/);
+  assert.match(styles, /\.skill-card[\s\S]*border-radius:\s*var\(--radius-soft\)/);
+  assert.match(styles, /\.skill-icon[\s\S]*border-radius:\s*0\.9rem/);
+  assert.match(styles, /\.dashboard-bar[\s\S]*border-radius:\s*999px 999px 0\.35rem 0\.35rem/);
   assert.doesNotMatch(styles, /border-left: 1px solid rgba\(111, 90, 66, 0\.34\)/);
 });
 
