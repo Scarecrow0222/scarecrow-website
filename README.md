@@ -53,7 +53,15 @@ npm test
 npm run build
 ```
 
-このプロジェクトでは、テスト成功とビルド成功を完了条件にしています。
+このプロジェクトでは、テスト成功とビルド成功を完了条件にしています。テストは Vitest で実行し、UI コンポーネントやページ表示は React Testing Library でユーザーから見える振る舞いを確認します。
+
+依存関係の監査は以下で確認します。
+
+```bash
+npm audit
+```
+
+Next.js が内部依存する PostCSS の監査対応として、`package.json` の `overrides` で `postcss@8.5.14` に固定しています。
 
 ## note RSS
 
