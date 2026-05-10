@@ -78,6 +78,14 @@ test("initial page access shows animated loading overlay before reveal", () => {
   assert.match(loader, /useEffect/);
   assert.match(loader, /useState/);
   assert.match(loader, /loader-content/);
+  assert.match(loader, /import Image from "next\/image"/);
+  assert.match(loader, /src="\/images\/scarecrow-working\.gif"/);
+  assert.match(loader, /width=\{80\}/);
+  assert.match(loader, /height=\{80\}/);
+  assert.match(loader, /alt=""/);
+  assert.match(loader, /aria-hidden="true"/);
+  assert.match(loader, /scale-x-\[-1\]/);
+  assert.equal(exists("public/images/scarecrow-working.gif"), true);
   assert.doesNotMatch(loader, /loader-scarecrow/);
   assert.doesNotMatch(loader, /loading-scarecrow/);
   assert.match(loader, /LOADING/);

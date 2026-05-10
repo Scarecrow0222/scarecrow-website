@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const FINISH_DELAY_MS = 360;
 
@@ -27,8 +28,14 @@ export function PageLoader() {
     const timer = window.setInterval(() => {
       setProgress((current) => {
         const next = pageReady
-          ? Math.min(100, current + Math.max(4, Math.ceil((100 - current) * 0.32)))
-          : Math.min(94, current + Math.max(1, Math.ceil((94 - current) * 0.12)));
+          ? Math.min(
+              100,
+              current + Math.max(4, Math.ceil((100 - current) * 0.32)),
+            )
+          : Math.min(
+              94,
+              current + Math.max(1, Math.ceil((94 - current) * 0.12)),
+            );
 
         if (next >= 100 && !finished) {
           finished = true;
@@ -57,10 +64,23 @@ export function PageLoader() {
   }
 
   return (
-    <div className={`site-loader${isReady ? " is-hidden" : ""}`} aria-hidden={isReady}>
+    <div
+      className={`site-loader${isReady ? " is-hidden" : ""}`}
+      aria-hidden={isReady}
+    >
       <div className="loader-shell" aria-live="polite">
         <div className="loader-content">
           <p className="loader-brand">Scarecrow</p>
+          <div className="flex items-center justify-center w-full">
+            <Image
+              src="/images/scarecrow-working.gif"
+              alt=""
+              className="scale-x-[-1]"
+              width={80}
+              height={80}
+              aria-hidden="true"
+            />
+          </div>
           <div className="loader-row">
             <span className="loader-label">
               LOADING<span className="loader-dots">...</span>
@@ -68,7 +88,10 @@ export function PageLoader() {
             <span className="loader-percent">{progress}%</span>
           </div>
           <div className="loader-track" aria-hidden="true">
-            <span className="loader-progress" style={{ width: `${progress}%` }} />
+            <span
+              className="loader-progress"
+              style={{ width: `${progress}%` }}
+            />
           </div>
         </div>
       </div>

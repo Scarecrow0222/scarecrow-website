@@ -123,7 +123,10 @@ function ProfileLinkIcon({ icon }: { icon: string }) {
 export default function AboutPage() {
   return (
     <section className="about-scene mx-auto grid max-w-5xl gap-10 px-5 py-14 md:grid-cols-[320px_1fr] md:items-start">
-      <div className="relative flex flex-col items-center px-6 py-8 text-center" data-reveal>
+      <div
+        className="relative flex flex-col items-center px-6 py-8 text-center"
+        data-reveal
+      >
         <div className="relative h-48 w-48 overflow-hidden rounded-full bg-[#2b241d] shadow-[0_0_70px_rgba(210,149,81,0.2)]">
           <Image
             src="/images/icon.png"
@@ -160,7 +163,7 @@ export default function AboutPage() {
           <br />
           個人開発を続けています。
           <br />
-          考えたこと、作ったもの、途中で迷ったことも含めて、
+          考えたこと、作ったもの、途中で迷ったことを、
           <br />
           静かに記録していきます。
         </p>
@@ -191,7 +194,11 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
-        <section className="service-stack mt-10" aria-labelledby="services-heading" data-reveal>
+        <section
+          className="service-stack mt-10"
+          aria-labelledby="services-heading"
+          data-reveal
+        >
           <p className="text-sm text-[#d49c5f]" id="services-heading">
             デプロイ・DB・インフラ
           </p>
