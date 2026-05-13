@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Image from "next/image";
 import Link from "next/link";
-import { AnalyticsTracker } from "./analytics-tracker";
 import { MobileNav } from "./MobileNav";
 import { PageLoader } from "./PageLoader";
 import { ScrollReveal } from "./ScrollReveal";
@@ -28,17 +28,26 @@ const navItems = [
   }
 ];
 
+export function isGoogleAnalyticsEnabled(
+  gaId: string | undefined,
+  nodeEnv = process.env.NODE_ENV,
+  vercelEnv = process.env.VERCEL_ENV
+): gaId is string {
+  return Boolean(gaId) && nodeEnv === "production" && vercelEnv === "production";
+}
+
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.GA_ID;
+
   return (
     <html lang="ja">
       <body>
         <div className="grain" />
         <PageLoader />
-        <AnalyticsTracker />
         <ScrollReveal />
         <header className="sticky top-0 z-20 border-b border-[#6f5a42]/40 bg-[#1a1816]/88 backdrop-blur">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
@@ -82,6 +91,7 @@ export default function RootLayout({
           </div>
         </footer>
       </body>
+      {isGoogleAnalyticsEnabled(gaId) ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }

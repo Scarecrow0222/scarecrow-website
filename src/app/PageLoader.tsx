@@ -79,6 +79,7 @@ export function PageLoader() {
               width={80}
               height={80}
               aria-hidden="true"
+              priority
             />
           </div>
           <div className="loader-row">

@@ -9,7 +9,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.105.1",
+    "@next/third-parties": "^16.2.6",
     "@tailwindcss/postcss": "^4.1.13",
     "fast-xml-parser": "^5.2.5",
     "next": "^15.5.4",

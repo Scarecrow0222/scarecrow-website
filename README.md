@@ -7,7 +7,6 @@ Scarecrow Website は、個人開発の記録、noteの記事、制作物、プ�
 - Home: サイトの導入、最新ログ、Projects、Philosophy を表示
 - Logs: note RSS から記事を取得して表示
 - Projects: 制作物の一覧を表示
-- Dashboard: 管理者だけがアクセスできるアクセス分析を表示
 - About: Scarecrow のプロフィールとリンクを表示
 
 ## Tech Stack
@@ -16,7 +15,6 @@ Scarecrow Website は、個人開発の記録、noteの記事、制作物、プ�
 - TypeScript
 - Tailwind CSS
 - fast-xml-parser
-- Supabase
 - Vercel deploy 想定
 
 ## Development
@@ -27,24 +25,6 @@ npm run dev
 ```
 
 通常は `http://localhost:3000` で起動します。
-
-## Dashboard / Analytics
-
-アクセス数は `/api/analytics` で記録します。本番環境では Supabase の `public.page_views`、ローカル起動時は `public.page_views_local` に保存します。ダッシュボードは通常ナビには表示せず、以下のように管理トークン付きURLでアクセスします。
-
-```text
-http://localhost:3000/dashboard?token=<ADMIN_DASHBOARD_TOKEN>
-```
-
-環境変数は以下を参考に設定してください。
-
-```text
-NEXT_PUBLIC_SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-ADMIN_DASHBOARD_TOKEN=
-```
-
-Supabase 側には `supabase/migrations/0001_create_page_views.sql` を適用してください。`SUPABASE_SERVICE_ROLE_KEY` はサーバー専用の秘密鍵なので、ブラウザに公開しないでください。
 
 ## Verification
 
