@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function WorksPage() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-14">
@@ -8,6 +10,15 @@ export default function WorksPage() {
           <p className="mt-4 max-w-2xl leading-7 text-[#d8c6ad]">
             制作したWebサイトやLPを、許可をいただいた範囲で掲載していきます。
           </p>
+        </div>
+        <div className="intro-visual">
+          <Image
+            src="/images/works.png"
+            alt="Works artwork"
+            fill
+            className="object-cover"
+            sizes="(min-width: 768px) 360px, 100vw"
+          />
         </div>
       </div>
       <div className="detail-panel" data-reveal>
