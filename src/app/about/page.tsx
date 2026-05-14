@@ -158,18 +158,13 @@ export default function AboutPage() {
           Scarecrowについて
         </h1>
         <p className="mt-6 leading-8 text-[#d8c6ad]">
-          会社員をしながら本業では、webアプリ制作、
-          <br /> 趣味で深夜の作業部屋で、AIと対話しながら
+          Web制作や業務アプリの経験を活かして、LP制作、サイト改善、運用しやすい仕組みづくりを相談できます。AIを使った開発の進め方も取り入れながら、必要な範囲を一緒に整理します。
           <br />
-          個人開発を続けています。
-          <br />
-          考えたこと、作ったもの、途中で迷ったことを、
-          <br />
-          静かに記録していきます。
+          深夜の作業部屋でAIと対話しながら個人開発を続けています。
         </p>
         <section className="mt-10" aria-labelledby="skills-heading" data-reveal>
           <p className="text-sm text-[#d49c5f]" id="skills-heading">
-            主に使える技術・サービス
+            主に使える技術
           </p>
           <div className="skills-grid mt-4">
             {skills.map((skill) => (
@@ -200,7 +195,7 @@ export default function AboutPage() {
           data-reveal
         >
           <p className="text-sm text-[#d49c5f]" id="services-heading">
-            デプロイ・DB・インフラ
+            公開・運用で使うサービス
           </p>
           <div className="skills-grid mt-4">
             {serviceStacks.map((service) => (

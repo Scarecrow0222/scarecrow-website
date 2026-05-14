@@ -25,11 +25,24 @@ vi.mock("@/data/projects", () => ({
 }));
 
 describe("HomePage", () => {
-  it("ヒーロー、ログ、プロジェクト、哲学セクションを表示する", async () => {
+  it("ヒーロー、制作依頼プラン、ログ、プロジェクト、哲学セクションを表示する", async () => {
     render(await HomePage());
 
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("深夜の作業部屋から、記録を残していく。");
-    expect(screen.getByRole("link", { name: "最新のログを見る" })).toHaveAttribute("href", "/logs");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Web制作と運用を、相談しやすい形で。");
+    expect(screen.getByText(/AIを使った開発の進め方も活かしながら/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "制作プランを見る" })).toHaveAttribute("href", "#service-plans");
+    expect(screen.getByRole("link", { name: "制作実績を見る" })).toHaveAttribute("href", "/works");
+    expect(screen.getByRole("heading", { name: "制作依頼プラン" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "ライトLPプラン" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "スタンダード制作プラン" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "ビジネス運用プラン" })).toBeInTheDocument();
+    expect(screen.getByText("5万円から")).toBeInTheDocument();
+    expect(screen.getByText("15万円から")).toBeInTheDocument();
+    expect(screen.getByText("30万円から")).toBeInTheDocument();
+    expect(screen.getByText(/15万円プランではDB構築・DB管理は含めず/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "ライトLPプランの詳細" })).toHaveAttribute("href", "/services/light-lp");
+    expect(screen.getByRole("link", { name: "スタンダード制作プランの詳細" })).toHaveAttribute("href", "/services/standard");
+    expect(screen.getByRole("link", { name: "ビジネス運用プランの詳細" })).toHaveAttribute("href", "/services/business");
     expect(screen.getByRole("heading", { name: "Latest Logs" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /テスト用ログ/ })).toHaveAttribute(
       "href",

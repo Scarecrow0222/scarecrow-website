@@ -5,11 +5,12 @@ import Link from "next/link";
 import { MobileNav } from "./MobileNav";
 import { PageLoader } from "./PageLoader";
 import { ScrollReveal } from "./ScrollReveal";
+import { isGoogleAnalyticsEnabled } from "./analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Scarecrow Web",
-  description: "静かな夜の作業部屋から、記録を残していく個人Webサイト。",
+  description: "Web制作、LP制作、運用保守の相談ができるScarecrowのWebサイト。",
   icons: {
     icon: "/images/icon.png"
   }
@@ -17,6 +18,8 @@ export const metadata: Metadata = {
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/#service-plans", label: "Plans" },
+  { href: "/works", label: "Works" },
   { href: "/logs", label: "Logs" },
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
@@ -27,14 +30,6 @@ const navItems = [
     rel: "noopener noreferrer"
   }
 ];
-
-export function isGoogleAnalyticsEnabled(
-  gaId: string | undefined,
-  nodeEnv = process.env.NODE_ENV,
-  vercelEnv = process.env.VERCEL_ENV
-): gaId is string {
-  return Boolean(gaId) && nodeEnv === "production" && vercelEnv === "production";
-}
 
 export default function RootLayout({
   children

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const FINISH_DELAY_MS = 360;
 
@@ -71,17 +70,6 @@ export function PageLoader() {
       <div className="loader-shell" aria-live="polite">
         <div className="loader-content">
           <p className="loader-brand">Scarecrow</p>
-          <div className="flex items-center justify-center w-full">
-            <Image
-              src="/images/scarecrow-working.gif"
-              alt=""
-              className="scale-x-[-1]"
-              width={80}
-              height={80}
-              aria-hidden="true"
-              priority
-            />
-          </div>
           <div className="loader-row">
             <span className="loader-label">
               LOADING<span className="loader-dots">...</span>

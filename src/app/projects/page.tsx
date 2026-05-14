@@ -6,10 +6,10 @@ export default function ProjectsPage() {
     <section className="mx-auto max-w-6xl px-5 py-14">
       <div className="intro-scene mb-8" data-reveal>
         <div className="intro-copy">
-          <p className="text-sm text-[#d49c5f]">制作物</p>
+          <p className="text-sm text-[#d49c5f]">制作と検証の記録</p>
           <h1 className="mt-3 font-serif text-4xl text-[#f3e5d0]">Projects</h1>
           <p className="mt-4 max-w-2xl leading-7 text-[#d8c6ad]">
-            作っているもの、作りたいもの、試しながら形にしているものをまとめています。
+            Web制作で使える技術や考え方を、個人開発の中で試しながら形にしています。AIを使った開発の進め方も含めて、設計や運用の判断を積み上げている場所です。
           </p>
         </div>
         <div className="intro-visual">

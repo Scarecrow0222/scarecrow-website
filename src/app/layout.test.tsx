@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import RootLayout, { isGoogleAnalyticsEnabled, metadata } from "./layout";
+import { isGoogleAnalyticsEnabled } from "./analytics";
+import RootLayout, { metadata } from "./layout";
 
 vi.mock("./PageLoader", () => ({ PageLoader: () => null }));
 vi.mock("./ScrollReveal", () => ({ ScrollReveal: () => null }));

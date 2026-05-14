@@ -6,15 +6,13 @@ export default async function LogsPage() {
   const articles = await getNoteArticles();
 
   return (
-    <section className="mx-auto max-w-5xl px-5 py-14">
+    <section className="mx-auto max-w-6xl px-5 py-14">
       <div className="intro-scene mb-10" data-reveal>
         <div className="intro-copy">
-          <p className="text-sm text-[#d49c5f]">noteの記事</p>
+          <p className="text-sm text-[#d49c5f]">制作メモと考えたこと</p>
           <h1 className="mt-3 font-serif text-4xl text-[#f3e5d0]">Logs</h1>
-          <p className="mt-4 leading-7 text-[#d8c6ad]">
-            考えたこと、試したこと、うまくいかなかったことも含めて、
-            <br />
-            夜の作業メモを積み上げています。
+          <p className="mt-4 max-w-2xl leading-7 text-[#d8c6ad]">
+            制作の判断やAIを使った試行錯誤を、夜の作業メモとして残しています。うまくいったことだけでなく、迷ったことも含めて、相談時の考え方が見える場所です。
           </p>
         </div>
         <div className="intro-visual">
@@ -45,7 +43,7 @@ export default async function LogsPage() {
                         src={article.image}
                         alt=""
                         fill
-                        className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                        className="object-cover"
                         sizes="(min-width: 768px) 220px, 100vw"
                       />
                     </div>
