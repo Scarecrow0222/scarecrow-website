@@ -20,17 +20,4 @@ export const projects: Project[] = [
     tags: ["ollama", "Electron", "Node", "irodori-TTS", "voicevox", "個人開発"],
     href: "/projects",
   },
-  {
-    title: "リソース管理アプリ",
-    description:
-      "必要なリソースを一元管理して、効率的にアクセスできるようにするアプリ。",
-    tags: ["TDD", "React", "Node"],
-    href: "/projects",
-  },
-  {
-    title: "成長記録アプリ",
-    description: "日頃の学びや気づきを記録して、振り返るためのアプリ。",
-    tags: ["TDD", "React", "kotlin", "spring boot"],
-    href: "/projects",
-  },
 ];
