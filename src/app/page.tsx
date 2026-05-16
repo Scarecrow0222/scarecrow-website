@@ -44,8 +44,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="service-plans" className="section-band px-5 py-14" data-reveal>
-        <div className="mx-auto max-w-6xl">
+      <section id="service-plans" className="section-band service-plans-section px-5 py-14" data-reveal>
+        <div className="service-plans-inner mx-auto max-w-6xl">
           <div className="service-heading">
             <div>
               <p className="text-sm font-semibold text-[#d49c5f]">Web制作のご相談</p>
