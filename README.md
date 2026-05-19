@@ -4,7 +4,7 @@ Scarecrow Website は、個人開発の記録、noteの記事、制作物、プ�
 
 ## Features
 
-- Home: サイトの導入、最新ログ、Projects、Philosophy を表示
+- ホーム: サイトの導入、最新ログ、Projects、Philosophy を表示
 - Logs: note RSS から記事を取得して表示
 - Projects: 制作物の一覧を表示
 - About: Scarecrow のプロフィールとリンクを表示

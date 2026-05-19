@@ -5,14 +5,14 @@ import { describe, expect, it } from "vitest";
 import { MobileNav } from "./MobileNav";
 
 const items = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "ホーム" },
   { href: "/logs", label: "Logs" },
   {
     href: "https://forms.gle/XDLLPyPV4hwgCNLK6",
     label: "Contact",
     target: "_blank",
-    rel: "noopener noreferrer"
-  }
+    rel: "noopener noreferrer",
+  },
 ];
 
 describe("MobileNav", () => {
@@ -25,6 +25,9 @@ describe("MobileNav", () => {
 
     await user.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(
+      screen.getByRole("navigation", { name: "スマートフォン用メニュー" }),
+    ).toHaveClass("mobile-nav-accordion");
 
     await user.click(screen.getByRole("link", { name: "Logs" }));
     expect(toggle).toHaveAttribute("aria-expanded", "false");
@@ -37,8 +40,31 @@ describe("MobileNav", () => {
     await user.click(screen.getByRole("button", { name: "メニューを開く" }));
 
     const contact = screen.getByRole("link", { name: "Contact" });
-    expect(contact).toHaveAttribute("href", "https://forms.gle/XDLLPyPV4hwgCNLK6");
+    expect(contact).toHaveAttribute(
+      "href",
+      "https://forms.gle/XDLLPyPV4hwgCNLK6",
+    );
     expect(contact).toHaveAttribute("target", "_blank");
     expect(contact).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
+  it("サイドパネル用の背景ボタンを表示しない", async () => {
+    render(React.createElement(MobileNav, { items }));
+
+    expect(
+      screen.queryByRole("button", { name: "メニューを閉じる" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("閉じている時はメニュー項目をアクセシビリティツリーから隠す", async () => {
+    const user = userEvent.setup();
+    render(React.createElement(MobileNav, { items }));
+
+    expect(
+      screen.queryByRole("link", { name: "Logs" }),
+    ).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "メニューを開く" }));
+    expect(screen.getByRole("link", { name: "Logs" })).toBeInTheDocument();
   });
 });

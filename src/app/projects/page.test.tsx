@@ -18,6 +18,10 @@ describe("ProjectsPage", () => {
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Projects");
     expect(screen.getByText(/AIを使った開発の進め方も含めて/)).toBeInTheDocument();
+    expect(screen.getByAltText("個人開発プロジェクトのイメージ")).toHaveAttribute(
+      "src",
+      "/images/generated-projects.png"
+    );
     expect(screen.queryByRole("link", { name: "制作プランを見る" })).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Scarecrow Web" })).toBeInTheDocument();
   });

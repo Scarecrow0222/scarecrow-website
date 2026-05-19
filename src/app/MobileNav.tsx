@@ -54,15 +54,14 @@ export function MobileNav({ items }: MobileNavProps) {
         <span />
         <span />
       </button>
-      <button
-        className="mobile-nav-backdrop"
-        type="button"
-        aria-label="メニューを閉じる"
+      <nav
+        id="mobile-nav-menu"
+        className="mobile-nav-accordion"
         data-open={isOpen}
-        onClick={() => setIsOpen(false)}
-      />
-      <div id="mobile-nav-menu" className="mobile-nav-menu" data-open={isOpen}>
-        <div className="mobile-nav-panel text-sm text-[#d8c6ad]">
+        aria-hidden={!isOpen}
+        aria-label="スマートフォン用メニュー"
+      >
+        <div className="mobile-nav-panel text-sm text-[var(--muted)]">
           {items.map((item) => (
             <Link
               key={item.href}
@@ -70,13 +69,14 @@ export function MobileNav({ items }: MobileNavProps) {
               className="nav-link"
               target={item.target}
               rel={item.rel}
+              tabIndex={isOpen ? 0 : -1}
               onClick={() => setIsOpen(false)}
             >
               {item.label}
             </Link>
           ))}
         </div>
-      </div>
+      </nav>
     </div>
   );
 }

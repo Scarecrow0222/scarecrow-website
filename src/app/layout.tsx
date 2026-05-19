@@ -12,27 +12,28 @@ export const metadata: Metadata = {
   title: "Scarecrow Web",
   description: "Web制作、LP制作、運用保守の相談ができるScarecrowのWebサイト。",
   icons: {
-    icon: "/images/icon.png"
-  }
+    icon: "/images/new-icon.png",
+    apple: "/images/new-icon.png",
+  },
 };
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/#service-plans", label: "Plans" },
-  { href: "/works", label: "Works" },
-  { href: "/logs", label: "Logs" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
+  { href: "/", label: "ホーム" },
+  { href: "/#service-plans", label: "制作依頼" },
+  { href: "/works", label: "制作実績" },
+  { href: "/logs", label: "記事" },
+  // { href: "/projects", label: "Projects" },
+  { href: "/about", label: "プロフィール" },
   {
     href: "https://forms.gle/XDLLPyPV4hwgCNLK6",
-    label: "Contact",
+    label: "お問い合わせ",
     target: "_blank",
-    rel: "noopener noreferrer"
-  }
+    rel: "noopener noreferrer",
+  },
 ];
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -44,42 +45,42 @@ export default function RootLayout({
         <div className="grain" />
         <PageLoader />
         <ScrollReveal />
-        <header className="sticky top-0 z-20 border-b border-[#6f5a42]/40 bg-[#1a1816]/88 backdrop-blur">
+        <header className="site-header fixed inset-x-0 top-0 z-30 border-b border-[var(--border)] bg-white/82 backdrop-blur">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-            <Link href="/" className="flex items-center gap-3 text-[#f3e5d0]">
-              <span className="relative h-10 w-10 overflow-hidden rounded-full border border-[#8f6d45]/60 bg-[#211c17] shadow-[0_0_34px_rgba(210,149,81,0.18)]">
-                <Image
-                  src="/images/icon.png"
-                  alt="Scarecrow icon"
-                  fill
-                  className="scale-[1.28] object-contain"
-                  sizes="40px"
-                />
-              </span>
+            <Link
+              href="/"
+              className="flex items-center gap-3 text-[var(--text)]"
+            >
               <span className="font-serif text-xl">Scarecrow</span>
             </Link>
             <MobileNav items={navItems} />
-            <div className="desktop-nav flex items-center gap-5 text-sm text-[#d8c6ad]">
+            <div className="desktop-nav flex items-center gap-5 text-sm text-[var(--muted)]">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href} className="nav-link" target={item.target} rel={item.rel}>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="nav-link"
+                  target={item.target}
+                  rel={item.rel}
+                >
                   {item.label}
                 </Link>
               ))}
             </div>
           </nav>
         </header>
-        <main className="relative z-10">{children}</main>
-        <footer className="relative z-10 mt-10 overflow-hidden border-t border-[#6f5a42]/40 px-5 py-12 text-[#b7a58d]">
+        <main className="site-main relative z-10">{children}</main>
+        <footer className="relative z-10 mt-10 overflow-hidden border-t border-[var(--border)] px-5 py-12 text-[var(--muted)]">
           <div className="absolute inset-0 opacity-20">
             <Image
-              src="/images/footer.jpg"
-              alt="Books and notes footer artwork"
+              src="/images/generated-footer-contact.png"
+              alt="お問い合わせ背景イメージ"
               fill
               className="object-cover"
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#171310] via-[#171310]/88 to-[#171310]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f4f1f8] via-[#f4f1f8]/92 to-white/78" />
           <div className="relative mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div></div>
             <p className="text-sm">Still building quietly.</p>

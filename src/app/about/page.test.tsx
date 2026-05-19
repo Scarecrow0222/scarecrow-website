@@ -6,11 +6,22 @@ describe("AboutPage", () => {
   it("Web制作を相談できるプロフィールとして表示する", () => {
     render(<AboutPage />);
 
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Scarecrowについて");
-    expect(screen.getByText(/AIを使った開発の進め方も取り入れながら/)).toBeInTheDocument();
-    expect(screen.getByText(/深夜の作業部屋でAIと対話しながら個人開発を続けています/)).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "制作プランを見る" })).not.toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Scarecrowについて",
+    );
+    expect(
+      screen.getByText(/AIを使った開発の進め方も取り入れながら/),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: "制作プランを見る" }),
+    ).not.toBeInTheDocument();
     expect(screen.getByText("主に使える技術")).toBeInTheDocument();
     expect(screen.getByText("公開・運用で使うサービス")).toBeInTheDocument();
+    expect(screen.getByTestId("skill-icon-TypeScript")).toHaveStyle({
+      backgroundImage: "url('/images/about-tech-icons-v2.png')",
+    });
+    expect(screen.getByTestId("service-icon-AWS")).toHaveStyle({
+      backgroundImage: "url('/images/about-service-icons-v2.png')",
+    });
   });
 });

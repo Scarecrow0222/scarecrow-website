@@ -71,7 +71,7 @@ const profileLinks = [
   },
   {
     href: "/",
-    icon: "home",
+    icon: "ホーム",
     label: "ホームへ戻る",
   },
 ];
@@ -127,16 +127,16 @@ export default function AboutPage() {
         className="relative flex flex-col items-center px-6 py-8 text-center"
         data-reveal
       >
-        <div className="relative h-48 w-48 overflow-hidden rounded-full bg-[#2b241d] shadow-[0_0_70px_rgba(210,149,81,0.2)]">
+        <div className="relative h-48 w-48 overflow-hidden rounded-full bg-white shadow-[0_18px_60px_rgba(139,92,246,0.18)]">
           <Image
-            src="/images/icon.png"
+            src="/images/new-icon.png"
             alt="Scarecrow icon"
             fill
             className="scale-[1.18] object-contain"
             sizes="192px"
           />
         </div>
-        <p className="mt-5 font-serif text-2xl text-[#f3e5d0]">Scarecrow</p>
+        <p className="mt-5 font-serif text-2xl text-[var(--text)]">Scarecrow</p>
         <div className="profile-links mt-6 flex flex-wrap justify-center gap-2">
           {profileLinks.map((link) => (
             <Link
@@ -153,17 +153,15 @@ export default function AboutPage() {
         </div>
       </div>
       <div className="py-8 md:px-8" data-reveal>
-        <p className="text-sm text-[#d49c5f]">About</p>
-        <h1 className="mt-3 font-serif text-4xl text-[#f3e5d0]">
+        <p className="text-sm text-[var(--primary-deep)]">About</p>
+        <h1 className="mt-3 font-serif text-4xl text-[var(--text)]">
           Scarecrowについて
         </h1>
-        <p className="mt-6 leading-8 text-[#d8c6ad]">
+        <p className="mt-6 leading-8 text-[var(--muted)]">
           Web制作や業務アプリの経験を活かして、LP制作、サイト改善、運用しやすい仕組みづくりを相談できます。AIを使った開発の進め方も取り入れながら、必要な範囲を一緒に整理します。
-          <br />
-          深夜の作業部屋でAIと対話しながら個人開発を続けています。
         </p>
         <section className="mt-10" aria-labelledby="skills-heading" data-reveal>
-          <p className="text-sm text-[#d49c5f]" id="skills-heading">
+          <p className="text-sm text-[var(--primary-deep)]" id="skills-heading">
             主に使える技術
           </p>
           <div className="skills-grid mt-4">
@@ -172,16 +170,17 @@ export default function AboutPage() {
                 <span
                   className="skill-icon"
                   aria-hidden="true"
+                  data-testid={`skill-icon-${skill.name}`}
                   style={{
-                    backgroundImage: "url('/images/about-tech-icons.png')",
+                    backgroundImage: "url('/images/about-tech-icons-v2.png')",
                     backgroundPosition: skill.position,
                   }}
                 />
                 <div>
-                  <h2 className="text-base font-semibold text-[#f3e5d0]">
+                  <h2 className="text-base font-semibold text-[var(--text)]">
                     {skill.name}
                   </h2>
-                  <p className="mt-2 text-sm leading-6 text-[#bfae98]">
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                     {skill.description}
                   </p>
                 </div>
@@ -194,7 +193,10 @@ export default function AboutPage() {
           aria-labelledby="services-heading"
           data-reveal
         >
-          <p className="text-sm text-[#d49c5f]" id="services-heading">
+          <p
+            className="text-sm text-[var(--primary-deep)]"
+            id="services-heading"
+          >
             公開・運用で使うサービス
           </p>
           <div className="skills-grid mt-4">
@@ -203,16 +205,18 @@ export default function AboutPage() {
                 <span
                   className="skill-icon"
                   aria-hidden="true"
+                  data-testid={`service-icon-${service.name}`}
                   style={{
-                    backgroundImage: "url('/images/about-service-icons.png')",
+                    backgroundImage:
+                      "url('/images/about-service-icons-v2.png')",
                     backgroundPosition: service.position,
                   }}
                 />
                 <div>
-                  <h2 className="text-base font-semibold text-[#f3e5d0]">
+                  <h2 className="text-base font-semibold text-[var(--text)]">
                     {service.name}
                   </h2>
-                  <p className="mt-2 text-sm leading-6 text-[#bfae98]">
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                     {service.description}
                   </p>
                 </div>
