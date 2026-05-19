@@ -6,7 +6,7 @@ export default async function LogsPage() {
   const articles = await getNoteArticles();
 
   return (
-    <section className="mx-auto max-w-6xl px-5 py-14">
+    <section className="responsive-section mx-auto max-w-6xl px-5 py-14">
       <div className="intro-scene mb-10" data-reveal>
         <div className="intro-copy">
           <p className="text-sm text-[var(--primary-deep)]">

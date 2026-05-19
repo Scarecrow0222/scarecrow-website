@@ -23,7 +23,7 @@ export default async function ServicePlanPage({
   }
 
   return (
-    <section className="mx-auto max-w-6xl px-5 py-14">
+    <section className="responsive-section mx-auto max-w-6xl px-5 py-14">
       <div className="detail-hero" data-reveal>
         <p className="text-sm font-semibold text-[var(--primary-deep)]">
           制作依頼
@@ -37,7 +37,7 @@ export default async function ServicePlanPage({
         <p className="mt-5 max-w-3xl leading-8 text-[var(--muted)]">
           {plan.description}
         </p>
-        <div className="mt-7 flex flex-wrap gap-4">
+        <div className="responsive-actions mt-7 flex flex-wrap gap-4">
           <div>
             <p className="text-sm text-[var(--muted)]">制作費</p>
             <p className="font-serif text-4xl text-[var(--primary)]">
@@ -80,7 +80,7 @@ export default async function ServicePlanPage({
         </section>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="responsive-actions mt-8 flex flex-wrap gap-3">
         <Link
           className="service-detail-link"
           href="https://forms.gle/XDLLPyPV4hwgCNLK6"

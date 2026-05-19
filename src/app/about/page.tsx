@@ -5,22 +5,22 @@ const skills = [
   {
     name: "TypeScript",
     description: "型を活かしたフロントエンド・バックエンド実装",
-    position: "left top",
+    image: "/images/about-tech-typescript.png",
   },
   {
     name: "Next.js / React",
     description: "UI設計から画面実装、App Router構成まで",
-    position: "right top",
+    image: "/images/about-tech-react.png",
   },
   {
     name: "NestJS",
     description: "API、認証、業務ロジックを見通しよく設計",
-    position: "left bottom",
+    image: "/images/about-tech-nestjs.png",
   },
   {
     name: "Spring Boot / Kotlin",
     description: "堅めの業務アプリやバックエンド開発",
-    position: "right bottom",
+    image: "/images/about-tech-kotlin.png",
   },
 ];
 
@@ -28,22 +28,22 @@ const serviceStacks = [
   {
     name: "AWS",
     description: "クラウドインフラの設計・構築・運用まで一通り経験",
-    position: "left top",
+    image: "/images/about-service-aws.png",
   },
   {
     name: "Vercel",
     description: "Next.js アプリの公開、プレビュー、継続的なデプロイ",
-    position: "right top",
+    image: "/images/about-service-vercel.png",
   },
   {
     name: "Supabase",
     description: "DB、認証、API連携を含む小〜中規模アプリのバックエンド",
-    position: "left bottom",
+    image: "/images/about-service-supabase.png",
   },
   {
     name: "Render",
     description: "WebサービスやAPIサーバーのホスティング・運用",
-    position: "right bottom",
+    image: "/images/about-service-render.png",
   },
 ];
 
@@ -122,7 +122,7 @@ function ProfileLinkIcon({ icon }: { icon: string }) {
 
 export default function AboutPage() {
   return (
-    <section className="about-scene mx-auto grid max-w-5xl gap-10 px-5 py-14 md:grid-cols-[320px_1fr] md:items-start">
+    <section className="about-scene responsive-section mx-auto grid max-w-5xl gap-10 px-5 py-14 md:grid-cols-[320px_1fr] md:items-start">
       <div
         className="relative flex flex-col items-center px-6 py-8 text-center"
         data-reveal
@@ -172,8 +172,8 @@ export default function AboutPage() {
                   aria-hidden="true"
                   data-testid={`skill-icon-${skill.name}`}
                   style={{
-                    backgroundImage: "url('/images/about-tech-icons-v2.png')",
-                    backgroundPosition: skill.position,
+                    backgroundImage: `url('${skill.image}')`,
+                    backgroundPosition: "center",
                   }}
                 />
                 <div>
@@ -207,9 +207,8 @@ export default function AboutPage() {
                   aria-hidden="true"
                   data-testid={`service-icon-${service.name}`}
                   style={{
-                    backgroundImage:
-                      "url('/images/about-service-icons-v2.png')",
-                    backgroundPosition: service.position,
+                    backgroundImage: `url('${service.image}')`,
+                    backgroundPosition: "center",
                   }}
                 />
                 <div>

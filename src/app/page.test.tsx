@@ -26,7 +26,7 @@ vi.mock("@/data/projects", () => ({
 
 describe("ホームPage", () => {
   it("ヒーロー、制作依頼、ログ、プロジェクト、哲学セクションを表示する", async () => {
-    render(await ホームPage());
+    const { container } = render(await ホームPage());
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       "想いをカタチにする“育てられるWebサイト”を一緒につくる。",
@@ -35,6 +35,9 @@ describe("ホームPage", () => {
       screen.getByText(/相談しやすいAI時代の個人開発スタジオとして/),
     ).toBeInTheDocument();
     expect(screen.getByTestId("hero-terminal")).toHaveClass("typing-terminal");
+    expect(screen.getByText('import { WebPage } from "@/WebPage";')).toHaveClass(
+      "terminal-line-mobile",
+    );
     expect(screen.queryByTestId("terminal-cursor")).not.toBeInTheDocument();
     // expect(
     //   screen.getByText('import { WebPage } from "@/WebPage"'),
@@ -59,6 +62,12 @@ describe("ホームPage", () => {
     expect(
       screen.getByRole("heading", { name: "制作依頼" }),
     ).toBeInTheDocument();
+    expect(container.querySelector("#service-plans")).toHaveClass(
+      "service-plans-section",
+    );
+    expect(container.querySelector("#service-plans > div")).toHaveClass(
+      "service-plans-inner",
+    );
     expect(
       screen.getByRole("heading", { name: "ライトLPプラン" }),
     ).toBeInTheDocument();

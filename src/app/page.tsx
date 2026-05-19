@@ -18,7 +18,7 @@ export default async function ホームPage() {
   return (
     <>
       <section
-        className="hero-scene mx-auto max-w-6xl overflow-hidden px-5"
+        className="hero-scene responsive-section mx-auto max-w-6xl overflow-hidden px-5"
         data-reveal
       >
         <div className="image-wash" />
@@ -34,7 +34,7 @@ export default async function ホームPage() {
           <p className="mt-5 max-w-lg leading-8 text-[var(--muted)]">
             相談しやすいAI時代の個人開発スタジオとして、小さなLPから計測や外部サービス連携を含む事業サイトまで。目的、予算、公開後の運用に合わせて、必要な範囲を一緒に整理します。
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="responsive-actions mt-7 flex flex-wrap gap-3">
             <Link
               className="glass-button glass-button-primary"
               href="https://forms.gle/XDLLPyPV4hwgCNLK6"
@@ -69,7 +69,7 @@ export default async function ホームPage() {
             </div>
             <div className="terminal-body terminal-code">
               <p
-                className="terminal-line"
+                className="terminal-line terminal-line-mobile"
                 style={
                   {
                     "--typing-width": "43ch",
@@ -81,7 +81,7 @@ export default async function ホームPage() {
                 import {`{ WebPage }`} from "@/WebPage";
               </p>
               <p
-                className="terminal-line"
+                className="terminal-line terminal-line-mobile"
                 style={
                   {
                     "--typing-width": "40ch",
@@ -93,7 +93,7 @@ export default async function ホームPage() {
                 export default function WebPage() {"{"}
               </p>
               <p
-                className="terminal-line terminal-indent"
+                className="terminal-line terminal-line-mobile terminal-indent"
                 style={
                   {
                     "--typing-width": "20ch",
@@ -105,7 +105,7 @@ export default async function ホームPage() {
                 return (
               </p>
               <p
-                className="terminal-line terminal-indent"
+                className="terminal-line terminal-line-mobile terminal-indent"
                 style={
                   {
                     "--typing-width": "50ch",
@@ -117,7 +117,7 @@ export default async function ホームPage() {
                 &lt;webPage /&gt;
               </p>
               <p
-                className="terminal-line terminal-indent"
+                className="terminal-line terminal-line-mobile terminal-indent"
                 style={
                   {
                     "--typing-width": "10ch",
@@ -150,10 +150,10 @@ export default async function ホームPage() {
 
       <section
         id="service-plans"
-        className="section-band service-service-plans-section px-5 py-14"
+        className="section-band service-plans-section responsive-section px-5 py-14"
         data-reveal
       >
-        <div className="service-service-plans-inner mx-auto max-w-6xl">
+        <div className="service-plans-inner mx-auto max-w-6xl">
           <div className="service-heading">
             <div>
               <p className="text-sm font-semibold text-[var(--primary-deep)]">
@@ -213,9 +213,9 @@ export default async function ホームPage() {
         </div>
       </section>
 
-      <section className="section-band px-5 py-12" data-reveal>
+      <section className="section-band responsive-section px-5 py-12" data-reveal>
         <div className="mx-auto max-w-6xl">
-          <div className="mb-6 flex justify-between gap-4">
+          <div className="section-heading-row mb-6 flex justify-between gap-4">
             <div>
               <h2 className="font-serif text-3xl text-[var(--text)]">
                 最新記事
@@ -279,7 +279,7 @@ export default async function ホームPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-12" data-reveal hidden>
+      <section className="responsive-section mx-auto max-w-6xl px-5 py-12" data-reveal hidden>
         <div className="mb-6 flex flex-col gap-2">
           <h2 className="font-serif text-3xl text-[var(--text)]">Projects</h2>
           <p className="max-w-2xl text-sm leading-6 text-[var(--muted)]">
@@ -314,7 +314,7 @@ export default async function ホームPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pb-16" data-reveal>
+      <section className="responsive-section mx-auto max-w-6xl px-5 pb-16" data-reveal>
         <div className="philosophy-scene">
           <div className="philosophy-copy">
             <h2 className="font-serif text-3xl text-[var(--text)]">
@@ -342,7 +342,7 @@ export default async function ホームPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pb-16" data-reveal>
+      <section className="responsive-section mx-auto max-w-6xl px-5 pb-16" data-reveal>
         <div className="consultation-band">
           <div>
             <h2 className="font-serif text-2xl text-white md:text-3xl">

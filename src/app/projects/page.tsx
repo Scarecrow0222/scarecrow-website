@@ -3,7 +3,7 @@ import { projects } from "@/data/projects";
 
 export default function ProjectsPage() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-14">
+    <section className="responsive-section mx-auto max-w-6xl px-5 py-14">
       <div className="intro-scene mb-8" data-reveal>
         <div className="intro-copy">
           <p className="text-sm text-[var(--primary-deep)]">制作と検証の記録</p>

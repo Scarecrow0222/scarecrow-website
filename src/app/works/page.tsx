@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function WorksPage() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-14">
+    <section className="responsive-section mx-auto max-w-6xl px-5 py-14">
       <div className="intro-scene mb-8" data-reveal data-testid="works-intro">
         <div className="intro-copy">
           <p className="text-sm text-[var(--primary-deep)]">WebサイトやLP</p>

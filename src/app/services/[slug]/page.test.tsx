@@ -4,12 +4,14 @@ import ServicePlanPage, { generateStaticParams } from "./page";
 
 describe("ServicePlanPage", () => {
   it("ライトLPプランの詳細を表示する", async () => {
-    render(await ServicePlanPage({ params: Promise.resolve({ slug: "light-lp" }) }));
+    const { container } = render(await ServicePlanPage({ params: Promise.resolve({ slug: "light-lp" }) }));
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("ライトLPプラン");
     expect(screen.getByText("5万円から")).toBeInTheDocument();
     expect(screen.getByText("月額 3,000円から")).toBeInTheDocument();
     expect(screen.getByText("1ページ構成のシンプルなLP制作")).toBeInTheDocument();
+    expect(container.querySelector("section")).toHaveClass("responsive-section");
+    expect(container.querySelector(".responsive-actions")).toBeInTheDocument();
   });
 
   it("スタンダード制作プランはDBを含めない前提を表示する", async () => {

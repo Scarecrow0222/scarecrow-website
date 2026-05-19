@@ -10,6 +10,7 @@ const css = fs.readFileSync(
 describe("global responsive styles", () => {
   it("keeps the service plans centered and readable on mobile", () => {
     expect(css).toContain(".service-plans-section");
+    expect(css).toContain(".service-plans-inner");
     expect(css).toContain("overflow-x: hidden");
     expect(css).toContain("overflow-x: clip");
     expect(css).toContain("padding-inline: clamp(1rem, 5.5vw, 1.35rem)");
@@ -48,7 +49,13 @@ describe("global responsive styles", () => {
 
   it("keeps glass buttons and mobile accordion in the purple system", () => {
     expect(css).toContain(".glass-button");
-    expect(css).toContain("border: 1px solid rgba(139, 92, 246, 0.28)");
+    expect(css).toContain("border: 1px solid rgba(139, 92, 246, 0.42)");
+    expect(css).toContain("color: var(--primary-deep)");
+    expect(css).toContain(".glass-button-primary");
+    expect(css).toContain("background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.22))");
+    expect(css).toContain("background-color: rgba(255, 255, 255, 0.18)");
+    expect(css).toContain("backdrop-filter: blur(20px) saturate(145%)");
+    expect(css).not.toContain(".glass-button-primary {\n  color: white");
     expect(css).toContain(".mobile-nav-accordion");
     expect(css).toContain("grid-template-rows: 0fr");
     expect(css).toContain("left: calc(50% - 50vw)");
@@ -69,5 +76,32 @@ describe("global responsive styles", () => {
     expect(css).toContain("padding: clamp(1.35rem, 4vw, 3rem)");
     expect(css).toContain(".consultation-band");
     expect(css).toContain("linear-gradient(135deg, #7c3aed, #a855f7");
+  });
+
+  it("keeps every page resilient on phone-sized viewports", () => {
+    expect(css).toContain(".responsive-section");
+    expect(css).toContain(".responsive-actions");
+    expect(css).toContain(".section-heading-row");
+    expect(css).toContain(".intro-scene");
+    expect(css).toContain("padding: clamp(1rem, 5vw, 1.25rem)");
+    expect(css).toContain("top: auto");
+    expect(css).toContain("max-height: calc(100% - 2rem)");
+    expect(css).toContain("width: min(var(--typing-width), 100%)");
+    expect(css).toContain("flex-direction: column");
+    expect(css).toContain("align-items: flex-start");
+  });
+
+  it("keeps the hero terminal readable on mobile", () => {
+    expect(css).toContain(".terminal-line-mobile");
+    expect(css).toContain("font-size: clamp(0.54rem, 2.25vw, 0.68rem)");
+    expect(css).toContain("overflow-x: visible");
+    expect(css).toContain("margin-left: 0.55rem !important");
+  });
+
+  it("centers about icon artwork inside each frame", () => {
+    expect(css).toContain(".skill-icon");
+    expect(css).toContain("background-position: center");
+    expect(css).toContain("background-size: contain");
+    expect(css).toContain("place-self: center");
   });
 });
