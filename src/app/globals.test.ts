@@ -64,6 +64,17 @@ describe("global responsive styles", () => {
     expect(css).toContain("--font-serif: var(--font-sans)");
   });
 
+  it("keeps mobile hero glass buttons readable over the adjusted hero tone", () => {
+    expect(css).toContain("@media (max-width: 767px)");
+    expect(css).toContain(".hero-scene {\n    grid-template-columns: 1fr;");
+    expect(css).toContain("linear-gradient(180deg, rgba(250, 247, 255, 0.88), rgba(243, 236, 255, 0.62))");
+    expect(css).toContain(".hero-scene .glass-button");
+    expect(css).toContain("background-color: rgba(255, 255, 255, 0.12)");
+    expect(css).toContain("rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.14)");
+    expect(css).toContain("border-color: rgba(109, 74, 255, 0.58)");
+    expect(css).toContain("box-shadow:\n      inset 0 1px 0 rgba(255, 255, 255, 0.58)");
+  });
+
   it("keeps about icons aligned on mobile", () => {
     expect(css).toContain("@media (max-width: 640px)");
     expect(css).toContain("grid-template-columns: 3.75rem minmax(0, 1fr)");
@@ -74,6 +85,12 @@ describe("global responsive styles", () => {
   it("adds the free consultation band and padded philosophy panel", () => {
     expect(css).toContain(".philosophy-scene");
     expect(css).toContain("padding: clamp(1.35rem, 4vw, 3rem)");
+    expect(css).toContain("grid-template-columns: 1fr");
+    expect(css).toContain("padding: clamp(1rem, 5vw, 1.25rem)");
+    expect(css).toContain("min-height: clamp(170px, 52vw, 220px)");
+    expect(css.indexOf(".philosophy-visual {\n  position: relative")).toBeLessThan(
+      css.lastIndexOf(".philosophy-visual {\n    min-height: clamp(170px, 52vw, 220px)"),
+    );
     expect(css).toContain(".consultation-band");
     expect(css).toContain("linear-gradient(135deg, #7c3aed, #a855f7");
   });
