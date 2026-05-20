@@ -18,12 +18,85 @@ describe("global responsive styles", () => {
     expect(css).toContain("min-width: 0");
   });
 
+  it("adds responsive problem and production flow sections", () => {
+    expect(css).toContain(".problem-solution-card");
+    expect(css).toContain(".problem-solution-grid");
+    expect(css).toContain("grid-template-columns: repeat(5, minmax(0, 1fr))");
+    expect(css).toContain(".production-flow-card");
+    expect(css).toContain(".production-flow-steps");
+    expect(css).toContain(".production-flow-step::after");
+    expect(css).toContain(".production-flow-step > span,\n.production-flow-step > div");
+    expect(css).toContain("z-index: 1");
+    expect(css).toContain("top: 1.55rem");
+    expect(css).toContain("right: calc(-1 * clamp(0.55rem, 1.2vw, 0.85rem) - 0.25rem)");
+    expect(css).toContain("width: clamp(1.7rem, 3.2vw, 2.55rem)");
+    expect(css).toContain("clip-path: polygon(0 0, calc(100% - 0.6rem) 0, 100% 50%, calc(100% - 0.6rem) 100%, 0 100%)");
+    expect(css).toContain("content: \"\"");
+    expect(css).toContain("grid-template-columns: 1fr");
+    expect(css).toContain(".production-flow-step::after {\n    display: none;");
+  });
+
+  it("keeps the back-to-top button from staying purple after focus", () => {
+    expect(css).toContain(".back-to-top:hover");
+    expect(css).toContain(".back-to-top:focus-visible");
+    expect(css).not.toContain(".back-to-top:hover,\n.back-to-top:focus-visible");
+    expect(css).not.toContain("rgba(109, 74, 255, 0.62)");
+    expect(css).toContain("outline: 3px solid rgba(139, 92, 246, 0.26)");
+  });
+
+  it("keeps desktop production flow text readable without awkward title breaks", () => {
+    expect(css).toContain("grid-template-columns: 3.2rem minmax(7.4rem, 1fr)");
+    expect(css).toContain("width: 3.2rem");
+    expect(css).toContain("white-space: nowrap");
+    expect(css).toContain("word-break: keep-all");
+  });
+
+  it("makes the production flow connector animation visibly travel between icons", () => {
+    expect(css).toContain("height: 0.34rem");
+    expect(css).toContain("background-size: 210% 100%, 100% 100%");
+    expect(css).toContain("box-shadow: 0 0 12px rgba(139, 92, 246, 0.20)");
+    expect(css).toContain("animation: flow-connector-glide 1.9s ease-in-out infinite");
+    expect(css).toContain("@keyframes flow-connector-glide");
+    expect(css).not.toContain("width: calc(100% - 3.2rem + clamp(0.55rem, 1.2vw, 0.85rem))");
+    expect(css).not.toContain("@keyframes flow-connector-trace");
+  });
+
+  it("removes stale commented-out design experiments", () => {
+    expect(css).not.toContain("/* border: 1px solid var(--border); */");
+    expect(css).not.toContain("/* width: 50vw; */");
+    expect(css).not.toContain("/* border: 1px solid rgba(139, 92, 246, 0.16); */");
+    expect(css).not.toContain("/* box-shadow: 0 12px 28px rgba(139, 92, 246, 0.14); */");
+  });
+
   it("uses a softer scroll reveal motion", () => {
     expect(css).toContain("translate3d(0, 1.4rem, 0)");
     expect(css).toContain("scale(0.985)");
     expect(css).toContain("opacity 620ms ease");
     expect(css).toContain("transform 760ms cubic-bezier(0.22, 1, 0.36, 1)");
     expect(css).toContain("transition-delay: var(--reveal-delay, 0ms)");
+  });
+
+  it("adds richer motion while respecting reduced motion", () => {
+    expect(css).toContain(".hero-visual::after");
+    expect(css).toContain("@keyframes hero-visual-sheen");
+    expect(css).toContain("animation: hero-frame-glow");
+    expect(css).toContain("@keyframes hero-frame-glow");
+    expect(css).toContain(".terminal-panel::before");
+    expect(css).toContain("@keyframes terminal-glass-sheen");
+    expect(css).toContain(".terminal-panel::after");
+    expect(css).toContain("@keyframes terminal-scan-line");
+    expect(css).toContain(".problem-solution-card::before");
+    expect(css).toContain(".production-flow-card::before");
+    expect(css).toContain("@keyframes section-ambient-drift");
+    expect(css).toContain(".problem-solution-icon::after");
+    expect(css).toContain("@keyframes icon-ring-pulse");
+    expect(css).toContain("animation: flow-connector-trace");
+    expect(css).toContain("@keyframes flow-connector-trace");
+    expect(css).not.toContain("animation: icon-float");
+    expect(css).not.toContain("@keyframes icon-float");
+    expect(css).not.toContain("animation: flow-step-lift");
+    expect(css).not.toContain("@keyframes flow-step-lift");
+    expect(css).toContain(".hero-visual,\n  .hero-visual::after,\n  .terminal-panel::before,\n  .terminal-panel::after,\n  .problem-solution-card::before,\n  .production-flow-card::before,\n  .problem-solution-icon::after,\n  .production-flow-step::after {\n    animation: none;");
   });
 
   it("defines the Soft Purple Tech design tokens", () => {
@@ -45,6 +118,17 @@ describe("global responsive styles", () => {
     expect(css).toContain("@keyframes terminal-fade-loop");
     expect(css).toContain("animation-iteration-count: infinite");
     expect(css).not.toContain("@keyframes terminal-caret");
+  });
+
+  it("centers the desktop hero terminal inside the visual card", () => {
+    expect(css).toContain(".terminal-panel");
+    expect(css).toContain("left: 50%");
+    expect(css).toContain("top: 50%");
+    expect(css).toContain("right: auto");
+    expect(css).toContain("transform: translate(-50%, -50%)");
+    expect(css).toContain("will-change: transform");
+    expect(css).toContain(".terminal-panel {\n    left: 1rem;");
+    expect(css).toContain("transform: none");
   });
 
   it("animates the hero title accent in the purple system", () => {

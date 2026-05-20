@@ -20,6 +20,7 @@ describe("LogsPage", () => {
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("記事");
     expect(screen.getByText(/制作の判断やAIを使った試行錯誤を/)).toBeInTheDocument();
+    expect(screen.queryByText(/夜の/)).not.toBeInTheDocument();
     expect(screen.getByAltText("制作ログのイメージ")).toHaveAttribute("src", "/images/generated-logs.png");
     expect(screen.queryByRole("link", { name: "制作の相談をする" })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "制作プランを見る" })).not.toBeInTheDocument();

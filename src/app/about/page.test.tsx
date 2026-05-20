@@ -7,12 +7,9 @@ import AboutPage from "./page";
 const iconFiles = [
   "about-tech-typescript.png",
   "about-tech-react.png",
-  "about-tech-nestjs.png",
-  "about-tech-kotlin.png",
   "about-service-aws.png",
   "about-service-vercel.png",
   "about-service-supabase.png",
-  "about-service-render.png",
 ];
 
 describe("AboutPage", () => {
@@ -29,8 +26,11 @@ describe("AboutPage", () => {
       screen.queryByRole("link", { name: "制作プランを見る" }),
     ).not.toBeInTheDocument();
     expect(screen.getByText("Profile")).toBeInTheDocument();
-    expect(screen.getByText("主に使える技術")).toBeInTheDocument();
+    expect(screen.getByText("使用する技術")).toBeInTheDocument();
     expect(screen.getByText("公開・運用で使うサービス")).toBeInTheDocument();
+    expect(screen.queryByText("NestJS")).not.toBeInTheDocument();
+    expect(screen.queryByText("Spring Boot / Kotlin")).not.toBeInTheDocument();
+    expect(screen.queryByText("Render")).not.toBeInTheDocument();
     expect(screen.getByTestId("skill-icon-TypeScript")).toHaveStyle({
       backgroundImage: "url('/images/about-tech-typescript.png')",
       backgroundPosition: "center",

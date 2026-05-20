@@ -6,6 +6,7 @@ import { MobileNav } from "./MobileNav";
 import { PageLoader } from "./PageLoader";
 import { ScrollReveal } from "./ScrollReveal";
 import { isGoogleAnalyticsEnabled } from "./analytics";
+import { ArrowUp } from "lucide-react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,6 @@ const navItems = [
   { href: "/#service-plans", label: "制作依頼" },
   { href: "/works", label: "制作実績" },
   { href: "/logs", label: "記事" },
-  // { href: "/projects", label: "Projects" },
   { href: "/about", label: "プロフィール" },
   {
     href: "https://forms.gle/XDLLPyPV4hwgCNLK6",
@@ -30,6 +30,11 @@ const navItems = [
     target: "_blank",
     rel: "noopener noreferrer",
   },
+];
+
+const footerLinks = [
+  { href: "/privacy-policy", label: "プライバシーポリシー" },
+  { href: "/legal-notice", label: "特定商取引法に基づく表記" },
 ];
 
 export default function RootLayout({
@@ -41,7 +46,7 @@ export default function RootLayout({
 
   return (
     <html lang="ja">
-      <body>
+      <body id="top">
         <div className="grain" />
         <PageLoader />
         <ScrollReveal />
@@ -82,10 +87,26 @@ export default function RootLayout({
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#f4f1f8] via-[#f4f1f8]/92 to-white/78" />
           <div className="relative mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div></div>
+            <nav
+              aria-label="フッターリンク"
+              className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
+            >
+              {footerLinks.map((item) => (
+                <Link
+                  className="transition hover:text-[var(--primary-deep)]"
+                  href={item.href}
+                  key={item.href}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
             <p className="text-sm">Still building quietly.</p>
           </div>
         </footer>
+        <Link className="back-to-top" href="#top" aria-label="ページ上部へ戻る">
+          <ArrowUp size={20} strokeWidth={2.2} aria-hidden="true" />
+        </Link>
       </body>
       {isGoogleAnalyticsEnabled(gaId) ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>

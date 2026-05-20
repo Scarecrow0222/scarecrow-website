@@ -42,9 +42,6 @@ describe("ホームPage", () => {
       "terminal-line-mobile",
     );
     expect(screen.queryByTestId("terminal-cursor")).not.toBeInTheDocument();
-    // expect(
-    //   screen.getByText('import { WebPage } from "@/WebPage"'),
-    // ).toBeInTheDocument();
     expect(screen.getByText("Responsive checked")).toBeInTheDocument();
     expect(screen.getByText("Deploy success")).toBeInTheDocument();
     expect(
@@ -69,6 +66,23 @@ describe("ホームPage", () => {
     expect(
       screen.getByAltText("ガラスカード内のターミナルイメージ"),
     ).toHaveAttribute("src", "/images/generated-hero-terminal.png");
+    expect(
+      screen.getByRole("heading", { name: "こんな悩み、解決します" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("自分のお店やサービスを魅力的に伝えたい"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("公開後も更新しやすいホームページにしたい"),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText("AIを活用して業務を効率化したい"),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "制作の流れ" })).toBeInTheDocument();
+    expect(screen.getByText("01")).toBeInTheDocument();
+    expect(screen.getByText("相談・ヒアリング")).toBeInTheDocument();
+    expect(screen.getByText("05")).toBeInTheDocument();
+    expect(screen.getByText("運用・改善")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "制作依頼" }),
     ).toBeInTheDocument();

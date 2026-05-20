@@ -14,7 +14,7 @@ export default async function LogsPage() {
           </p>
           <h1 className="mt-3 font-serif text-4xl text-[var(--text)]">記事</h1>
           <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
-            制作の判断やAIを使った試行錯誤を、夜の作業メモとして残しています。うまくいったことだけでなく、迷ったことも含めて、相談時の考え方が見える場所です。
+            制作の判断やAIを使った試行錯誤を、制作メモとして残しています。うまくいったことだけでなく、迷ったことも含めて、相談時の考え方が見える場所です。
           </p>
         </div>
         <div className="intro-visual">

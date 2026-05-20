@@ -12,16 +12,6 @@ const skills = [
     description: "UI設計から画面実装、App Router構成まで",
     image: "/images/about-tech-react.png",
   },
-  {
-    name: "NestJS",
-    description: "API、認証、業務ロジックを見通しよく設計",
-    image: "/images/about-tech-nestjs.png",
-  },
-  {
-    name: "Spring Boot / Kotlin",
-    description: "堅めの業務アプリやバックエンド開発",
-    image: "/images/about-tech-kotlin.png",
-  },
 ];
 
 const serviceStacks = [
@@ -39,11 +29,6 @@ const serviceStacks = [
     name: "Supabase",
     description: "DB、認証、API連携を含む小〜中規模アプリのバックエンド",
     image: "/images/about-service-supabase.png",
-  },
-  {
-    name: "Render",
-    description: "WebサービスやAPIサーバーのホスティング・運用",
-    image: "/images/about-service-render.png",
   },
 ];
 
@@ -162,7 +147,7 @@ export default function AboutPage() {
         </p>
         <section className="mt-10" aria-labelledby="skills-heading" data-reveal>
           <p className="text-sm text-[var(--primary-deep)]" id="skills-heading">
-            主に使える技術
+            使用する技術
           </p>
           <div className="skills-grid mt-4">
             {skills.map((skill) => (

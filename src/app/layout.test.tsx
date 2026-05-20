@@ -46,6 +46,15 @@ describe("RootLayout", () => {
     expect(
       screen.getAllByRole("link", { name: "お問い合わせ" })[0],
     ).toHaveAttribute("href", "https://forms.gle/XDLLPyPV4hwgCNLK6");
+    expect(
+      screen.getByRole("link", { name: "プライバシーポリシー" }),
+    ).toHaveAttribute("href", "/privacy-policy");
+    expect(
+      screen.getByRole("link", { name: "特定商取引法に基づく表記" }),
+    ).toHaveAttribute("href", "/legal-notice");
+    expect(
+      screen.getByRole("link", { name: "ページ上部へ戻る" }),
+    ).toHaveAttribute("href", "#top");
     expect(screen.getByText("本文")).toBeInTheDocument();
   });
 

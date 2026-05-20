@@ -4,13 +4,86 @@ import type { CSSProperties } from "react";
 import { projects } from "@/data/projects";
 import { servicePlans } from "@/data/servicePlans";
 import { getNoteArticles } from "@/lib/note";
-import { Link2 } from "lucide-react";
+import {
+  BarChart3,
+  Code2,
+  FileText,
+  Lightbulb,
+  Link2,
+  MessageCircle,
+  Rocket,
+  Smartphone,
+  TrendingUp,
+  UserRound,
+  type LucideIcon,
+} from "lucide-react";
 
 const generatedImages = {
   hero: "/images/generated-hero-terminal.png",
   philosophy: "/images/generated-philosophy.png",
   logs: "/images/generated-logs.png",
 };
+
+const problemSolutions: { title: string; icon: LucideIcon }[] = [
+  {
+    title: "自分のお店やサービスを魅力的に伝えたい",
+    icon: Lightbulb,
+  },
+  {
+    title: "スマホで見やすいサイトが欲しい",
+    icon: Smartphone,
+  },
+  {
+    title: "アクセスを増やして集客につなげたい",
+    icon: TrendingUp,
+  },
+  {
+    title: "制作後も相談できる人がほしい",
+    icon: UserRound,
+  },
+  {
+    title: "公開後も更新しやすいホームページにしたい",
+    icon: FileText,
+  },
+];
+
+const productionFlow: {
+  step: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}[] = [
+  {
+    step: "01",
+    title: "相談・ヒアリング",
+    description: "目的や要望を丁寧に確認します。",
+    icon: MessageCircle,
+  },
+  {
+    step: "02",
+    title: "設計・ご提案",
+    description: "構成とお見積りをご提案します。",
+    icon: FileText,
+  },
+  {
+    step: "03",
+    title: "制作・実装",
+    description: "デザインと実装を進めます。",
+    icon: Code2,
+  },
+  {
+    step: "04",
+    title: "公開・納品",
+    description: "テスト後、公開まで対応します。",
+    icon: Rocket,
+  },
+  {
+    step: "05",
+    title: "運用・改善",
+    description: "解析をもとに改善します。",
+    icon: BarChart3,
+  },
+];
 
 export default async function ホームPage() {
   const articles = await getNoteArticles(3);
@@ -147,6 +220,60 @@ export default async function ホームPage() {
           <Link className="glass-button" href="/works">
             制作実績を見る
           </Link>
+        </div>
+      </section>
+
+      <section
+        className="responsive-section mx-auto max-w-6xl px-5 py-12"
+        data-reveal
+      >
+        <div className="problem-solution-card">
+          <div className="section-mini-heading">
+            <span aria-hidden="true">✧</span>
+            <h2 className="font-serif text-2xl text-[var(--text)] md:text-3xl">
+              こんな悩み、解決します
+            </h2>
+            <span aria-hidden="true">✧</span>
+          </div>
+          <div className="problem-solution-grid">
+            {problemSolutions.map(({ title, icon: Icon }) => (
+              <article className="problem-solution-item" key={title}>
+                <span className="problem-solution-icon" aria-hidden="true">
+                  <Icon size={38} strokeWidth={1.8} />
+                </span>
+                <p>{title}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="responsive-section mx-auto max-w-6xl px-5 pb-14"
+        data-reveal
+      >
+        <div className="production-flow-card">
+          <div className="section-mini-heading section-mini-heading-left">
+            <span aria-hidden="true">✧</span>
+            <h2 className="font-serif text-2xl text-[var(--text)] md:text-3xl">
+              制作の流れ
+            </h2>
+            <span aria-hidden="true">✧</span>
+          </div>
+          <div className="production-flow-steps">
+            {productionFlow.map(({ step, title, description, icon: Icon }) => (
+              <article className="production-flow-step" key={step}>
+                <span className="production-flow-icon" aria-hidden="true">
+                  <Icon size={34} strokeWidth={1.8} />
+                </span>
+                <div>
+                  <p className="production-flow-number">{step}</p>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
