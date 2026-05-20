@@ -153,9 +153,9 @@ export default function AboutPage() {
         </div>
       </div>
       <div className="py-8 md:px-8" data-reveal>
-        <p className="text-sm text-[var(--primary-deep)]">About</p>
+        <p className="text-sm text-[var(--primary-deep)]">Profile</p>
         <h1 className="mt-3 font-serif text-4xl text-[var(--text)]">
-          Scarecrowについて
+          プロフィール
         </h1>
         <p className="mt-6 leading-8 text-[var(--muted)]">
           Web制作や業務アプリの経験を活かして、LP制作、サイト改善、運用しやすい仕組みづくりを相談できます。AIを使った開発の進め方も取り入れながら、必要な範囲を一緒に整理します。

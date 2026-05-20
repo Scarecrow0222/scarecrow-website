@@ -29,7 +29,10 @@ describe("ホームPage", () => {
     const { container } = render(await ホームPage());
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "想いをカタチにする“育てられるWebサイト”を一緒につくる。",
+      "想いをカタチにする育てられるWebサイトを一緒につくる。",
+    );
+    expect(screen.getByText("育てられるWebサイト")).toHaveClass(
+      "hero-title-accent",
     );
     expect(
       screen.getByText(/相談しやすいAI時代の個人開発スタジオとして/),
@@ -47,9 +50,16 @@ describe("ホームPage", () => {
     expect(
       screen.queryByRole("link", { name: "制作プランを見る" }),
     ).not.toBeInTheDocument();
+    const heroTerminal = screen.getByTestId("hero-terminal");
+    const consultationLink = screen.getByRole("link", { name: "制作相談をする" });
+    expect(consultationLink).toHaveAttribute(
+      "href",
+      "https://forms.gle/XDLLPyPV4hwgCNLK6",
+    );
     expect(
-      screen.getByRole("link", { name: "制作相談をする" }),
-    ).toHaveAttribute("href", "https://forms.gle/XDLLPyPV4hwgCNLK6");
+      heroTerminal.compareDocumentPosition(consultationLink) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
     expect(
       screen.getByRole("link", { name: "制作実績を見る" }),
     ).toHaveAttribute("href", "/works");

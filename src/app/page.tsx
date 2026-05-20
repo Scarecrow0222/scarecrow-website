@@ -28,25 +28,14 @@ export default async function ホームPage() {
           </p>
           <h1 className="hero-title max-w-xl font-serif text-4xl leading-[1.45] text-[var(--text)] md:text-5xl">
             <span className="keep-phrase">想いをカタチにする</span>
-            <span className="keep-phrase">“育てられるWebサイト”</span>
+            <span className="keep-phrase hero-title-accent">
+              育てられるWebサイト
+            </span>
             <span className="keep-phrase">を一緒につくる。</span>
           </h1>
           <p className="mt-5 max-w-lg leading-8 text-[var(--muted)]">
             相談しやすいAI時代の個人開発スタジオとして、小さなLPから計測や外部サービス連携を含む事業サイトまで。目的、予算、公開後の運用に合わせて、必要な範囲を一緒に整理します。
           </p>
-          <div className="responsive-actions mt-7 flex flex-wrap gap-3">
-            <Link
-              className="glass-button glass-button-primary"
-              href="https://forms.gle/XDLLPyPV4hwgCNLK6"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              制作相談をする
-            </Link>
-            <Link className="glass-button" href="/works">
-              制作実績を見る
-            </Link>
-          </div>
         </div>
         <div className="hero-visual">
           <Image
@@ -145,6 +134,19 @@ export default async function ホームPage() {
               </p>
             </div>
           </div>
+        </div>
+        <div className="hero-actions responsive-actions mt-7 flex flex-wrap gap-3">
+          <Link
+            className="glass-button glass-button-primary"
+            href="https://forms.gle/XDLLPyPV4hwgCNLK6"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            制作相談をする
+          </Link>
+          <Link className="glass-button" href="/works">
+            制作実績を見る
+          </Link>
         </div>
       </section>
 
